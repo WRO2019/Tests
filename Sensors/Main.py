@@ -5,7 +5,6 @@ import logging
 # Printing Sensors-Values
 
 while True:
-    logging.warning("All Sensors:")
     logging.warning("IR-Angel: " + str(Sensors.get_ir_angel()))
     logging.warning("IR-Direction: " + str(Sensors.get_ir_direction()))
     logging.warning("IR-Distance: " + str(Sensors.get_ir_distance()))
