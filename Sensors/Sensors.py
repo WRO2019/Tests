@@ -27,7 +27,7 @@ def get_ir_angel():
 ############################################################
 
 def get_ir_distance():
-    return Utility.irSeeker.value("1")  # Falsch
+    return Utility.irSeeker.value1()
 
 
 ############################################################

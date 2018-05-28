@@ -4,9 +4,10 @@ from ev3dev.ev3 import *
 # Sensors
 gyro_sensor = Sensor('in3')
 irSeeker = Sensor("in1")
-irSeeker.mode = "AC"
+irSeeker.mode = "DC"
 ultrasonic_Sensor = Sensor("in2")
 button = Sensor("in4")
+coulor = Sensor("in2")
 
 ############################################################
 # Fix Values
