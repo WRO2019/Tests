@@ -1,6 +1,10 @@
 # Tests
-Test Projekte
+Private Projekte!
+Streng Geheim!
 
-Diese Projekte sind alle Urheberrechtlich geschützt auf die Luktech GmbH & Co KG.
+Jegliche Nutzung dieser Daten ist ohne schriftliche Erlaubnis jedem UNTERSAGT!
 
-Lukas ist der Coolste
+Creators:
+
+Lukas H.
+Kevin K.
