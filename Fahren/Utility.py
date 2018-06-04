@@ -6,48 +6,50 @@ mB = Motor("outB")  # Rechts
 mC = Motor("outD")  # Hinten
 mD = Motor("outC")  # Vorne
 
+
 ######################################################
 
 def winkel_form(winkel):
-    if winkel < 0:
+    # positive Werte
+    # Winkel des Dreicks wird aus Richtung errechnet
+    if 0 < winkel < 45:
+        return 45 - winkel
+    elif 45 < winkel < 90:
+        return winkel - 45
+    elif 90 < winkel < 135:
+        return 135 - winkel
+    elif 135 < winkel < 180:
+        return winkel - 135
+    elif 180 < winkel < 225:
+        return 225 - winkel
+    elif 225 < winkel < 270:
+        return winkel - 225
+    elif 270 < winkel < 315:
+        return 315 - winkel
+    elif 315 < winkel < 360:
+        return winkel - 315
 
-        if winkel > -44:
+    ######################################################
+    # negative Werte
+    elif 0 > winkel > -45:
+        return -45 - winkel
+    elif -45 > winkel > -90:
+        return winkel + 45
+    elif -90 > winkel > -135:
+        return -135 - winkel
+    elif -135 > winkel > -180:
+        return winkel + 135
+    elif -180 > winkel > -225:
+        return -225 - winkel
+    elif -225 > winkel > -270:
+        return winkel + 225
+    elif -270 > winkel > -315:
+        return -315 - winkel
+    elif -315 > winkel > -360:
+        return winkel + 315
 
-            winkel_neu = 45 - abs(winkel)
 
-            return winkel_neu
-
-        elif winkel == 45:
-
-            winkel_neu = 0
-
-            return winkel_neu
-
-        elif winkel < -45:
-
-            winkel_neu = 90 - abs(winkel)
-
-            return winkel_neu
-
-    elif winkel >= 0:
-
-        if winkel < 44:
-
-            winkel_neu = 45 - abs(winkel)
-
-            return winkel_neu
-
-        elif winkel == 45:
-
-            winkel_neu = 0
-
-            return winkel_neu
-
-        elif winkel > 45:
-
-            winkel_neu = 90 - abs(winkel)
-
-            return winkel_neu
+######################################################
 
 def isEqualTo(wert, werte):
     for i in werte:
