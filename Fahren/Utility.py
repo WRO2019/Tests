@@ -1,11 +1,10 @@
 from ev3dev.ev3 import *
 
 #####################################################
-mA = Motor("outA")  # Motors    # Links
+mA = Motor("outA")  # Motors   # Links
 mB = Motor("outB")  # Rechts
-mC = Motor("outC")  # Hinten
-mD = Motor("outD")  # Vorne
-
+mC = Motor("outD")  # Hinten
+mD = Motor("outC")  # Vorne
 
 ######################################################
 
@@ -49,3 +48,10 @@ def winkel_form(winkel):
             winkel_neu = 90 - abs(winkel)
 
             return winkel_neu
+
+def isEqualTo(wert, werte):
+    for i in werte:
+        if i == wert:
+            return True
+            break
+    return False

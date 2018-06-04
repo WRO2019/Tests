@@ -1,105 +1,111 @@
 import Utility
 import math
-from time import sleep
-
+import logging
 motorSpeed = 800
 
 def move(winkel, speed):
-    winkel = winkel - 180
     winkel_neu = Utility.winkel_form(winkel)
-    if winkel < 0:
 
-        if winkel > -44:
+    if winkel_neu < 0:  # Winkel positiv machen
+        winkel_neu = winkel_neu * -1
 
-            speed_neu = speed * math.sin(math.radians(winkel_neu))
+    speed_two = speed * math.tan(math.radians(winkel_neu))
+    #Utility.mA._speed_sp=
+    ############################################################
+    if 45 < winkel < 90:  # positive
+        speed_two = speed_two * -1
+    if 135 < winkel < 180:
+        speed_two = speed_two * -1
+    if 180 < winkel < 225:
+        speed_two = speed_two * -1
+    if 270 < winkel < 315:
+        speed_two = speed_two * -1
+    ############################################################
+    if -45 > winkel > -90:  # negative
+        speed_two = speed_two * -1
+    if -135 > winkel > -180:
+        speed_two = speed_two * -1
+    if -180 > winkel > -225:
+        speed_two = speed_two * -1
+    if -270 > winkel > -315:
+        speed_two = speed_two * -1
+    ############################################################
+    logging.warning("Winkel: " + str(winkel))
+    logging.warning("Speed_two: " + str(speed_two))
+    logging.warning("Speed: " + str(speed))
+    setMotors(winkel, speed_two, speed)
 
-            Utility.mA.run_forever(speed_sp=-speed_neu)
+##########################################################################################################
+# check welches Motorpaar speed bekommt
+def setMotors(winkel, speed_two, speed):
 
-            Utility.mB.run_forever(speed_sp=-speed_neu)
-
-            Utility.mC.run_forever(speed_sp=1.4 * speed)
-
-            Utility.mD.run_forever(speed_sp=-1.4 * speed)
-
-            sleep(0.01)
-
-        elif winkel <= -45:
-
-            if winkel <= -180:
-                i = 1
-            else:
-                i = -1
-
-            speed_neu = speed * math.sin(math.radians(winkel_neu))
-
-            Utility.mA.run_forever(speed_sp=-speed_neu)
-
-            Utility.mB.run_forever(speed_sp=-speed_neu)
-
-            Utility.mC.run_forever(speed_sp=i * 1.4 * speed)
-
-            Utility.mD.run_forever(speed_sp=i * -1.4 * speed)
-
-            sleep(0.01)
-
-    elif winkel == 0:
-
-        Utility.mA.run_forever(speed_sp=-speed)
-
-        Utility.mB.run_forever(speed_sp=-speed)
-
+    if Utility.isEqualTo(winkel, [0, 360, -360]):  # ohne speed_two wenn 45 Rheie und
+        logging.warning("Bin bei 0")
+        Utility.mA.run_forever(speed_sp=speed)  # motoren Gleichen Speed benötigen
+        Utility.mB.run_forever(speed_sp=speed)
         Utility.mC.run_forever(speed_sp=-1.4 * speed)
-
         Utility.mD.run_forever(speed_sp=1.4 * speed)
+    elif Utility.isEqualTo(winkel, [45 , -315]):
+        logging.warning("Bin bei 45")
+        Utility.mC.run_forever(speed_sp=-1.4 * speed)
+        Utility.mD.run_forever(speed_sp=1.4 * speed)
+    elif Utility.isEqualTo(winkel, [90, -270]):
+        logging.warning("Bin bei 90")
+        Utility.mA.run_forever(speed_sp=-speed)
+        Utility.mB.run_forever(speed_sp=-speed)
+        Utility.mC.run_forever(speed_sp=-1.4 * speed)
+        Utility.mD.run_forever(speed_sp=1.4 * speed)
+    elif Utility.isEqualTo(winkel, [135, -225]):
+        logging.warning("Bin bei 135")
+        Utility.mA.run_forever(speed_sp=-speed)
+        Utility.mB.run_forever(speed_sp=-speed)
+    elif Utility.isEqualTo(winkel, [180, -180]):
+        logging.warning("Bin bei 180")
+        Utility.mA.run_forever(speed_sp=-speed)
+        Utility.mB.run_forever(speed_sp=-speed)
+        Utility.mC.run_forever(speed_sp=1.4 * speed)
+        Utility.mD.run_forever(speed_sp=-1.4 * speed)
+    elif Utility.isEqualTo(winkel, [255, -135]):
+        logging.warning("Bin bei 255")
+        Utility.mC.run_forever(speed_sp=1.4 * speed)
+        Utility.mD.run_forever(speed_sp=-1.4 * speed)
+    elif Utility.isEqualTo(winkel, [270, -90]):
+        logging.warning("Bin bei 270")
+        Utility.mA.run_forever(speed_sp=speed)
+        Utility.mB.run_forever(speed_sp=speed)
+        Utility.mC.run_forever(speed_sp=1.4 * speed)
+        Utility.mD.run_forever(speed_sp=-1.4 * speed)
+    elif Utility.isEqualTo(winkel, [315, -45]):
+        logging.warning("Bin bei 315")
+        Utility.mA.run_forever(speed_sp=speed)
+        Utility.mB.run_forever(speed_sp=speed)
 
-        sleep(0.01)
+    ############################################################
 
-    elif winkel > 0:
+    elif 0 < winkel < 90 or -270 > winkel > 360:  # Mit speed_two
+        Utility.mA.run_forever(speed_sp=speed_two)
+        Utility.mB.run_forever(speed_sp=speed_two)
+        Utility.mC.run_forever(speed_sp=-1.4 * speed)
+        Utility.mD.run_forever(speed_sp=1.4 * speed)
+    elif 90 < winkel < 180 or -180 > winkel > -270:
+        Utility.mA.run_forever(speed_sp=-speed)
+        Utility.mB.run_forever(speed_sp=-speed)
+        Utility.mC.run_forever(speed_sp=1.4 * speed_two)
+        Utility.mD.run_forever(speed_sp=-1.4 * speed_two)
+    elif 180 < winkel < 270 or -90 > winkel > -180:
+        Utility.mA.run_forever(speed_sp=speed_two)
+        Utility.mB.run_forever(speed_sp=speed_two)
+        Utility.mC.run_forever(speed_sp=1.4 * speed)
+        Utility.mD.run_forever(speed_sp=-1.4 * speed)
+    elif 270 < winkel < 360 or 0 > winkel > -90:
+        Utility.mA.run_forever(speed_sp=speed)
+        Utility.mB.run_forever(speed_sp=speed)
+        Utility.mC.run_forever(speed_sp=1.4 * speed_two)
+        Utility.mD.run_forever(speed_sp=-1.4 * speed_two)
 
-        if winkel < 44:
 
-            speed_neu = speed * math.cos(math.radians(winkel_neu))
 
-            Utility.mA.run_forever(speed_sp=-speed)
-
-            Utility.mB.run_forever(speed_sp=-speed)
-
-            Utility.mC.run_forever(speed_sp=-1.4 * speed_neu)
-
-            Utility.mD.run_forever(speed_sp=1.4 * speed_neu)
-
-            sleep(0.01)
-
-        elif winkel == 180:
-            speed_neu = speed * math.sin(math.radians(winkel_neu))
-
-            Utility.mA.run_forever(speed_sp=speed)
-
-            Utility.mB.run_forever(speed_sp=speed)
-
-            Utility.mC.run_forever(speed_sp=1.4 * speed_neu)
-
-            Utility.mD.run_forever(speed_sp=-1.4 * speed_neu)
-
-        elif winkel >= 45:
-
-            i = 1
-
-            if winkel > 90:
-                i = -1
-
-            speed_neu = speed * math.sin(math.radians(winkel_neu))
-
-            Utility.mA.run_forever(speed_sp=-speed)
-
-            Utility.mB.run_forever(speed_sp=-speed)
-
-            Utility.mC.run_forever(speed_sp=-1.4 * i * speed_neu)
-
-            Utility.mD.run_forever(speed_sp=1.4 * i * speed_neu)
-
-            sleep(0.01)
-
+##########################################################################################################
 
 def stop():
     Utility.mA.stop()
