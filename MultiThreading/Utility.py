@@ -1,11 +1,13 @@
-import time
+from time import sleep
 import logging
 
 threads = []
+run = True
 
 #############################################################################################
 # Thread Functions
 def print_time(threadName, delay):
-    while True:
-        logging.warning(threadName)
-        time.sleep(delay)
+    while run:
+        sleep(delay)
+        print(str(threadName))
+        # logging.warning(threadName)
