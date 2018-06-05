@@ -17,11 +17,11 @@ def get_ir_angel():
     for x in range(0, 10):
         werte.append(Utility.directions[Utility.irSeeker.value()])
         sleep(0.01)
-    gesamt = 0
+    a = 0
     for x in werte:
-        gesamt = gesamt + x
+        a = a + x
 
-    return gesamt / len(werte)
+    return a / len(werte)
 
 
 ############################################################

@@ -1,15 +1,5 @@
-from ev3dev.ev3 import *
+from enum import Enum
 
-############################################################
-# Sensors
-gyro_sensor = Sensor('in3')
-irSeeker = Sensor("in1")
-irSeeker.mode = "DC"
-ultrasonic_Sensor = Sensor("in2")
-button = Sensor("in4")
-coulor = Sensor("in2")
-
-############################################################
 # Fix Values
 directions = {0: 8888,  # 112.5
               1: 8888,
@@ -22,3 +12,21 @@ directions = {0: 8888,  # 112.5
               8: 105,
               9: 8888,
               }
+
+############################################################
+# Definiere Ports
+class Ports(Enum):
+    in1 = "in1"
+    in2 = "in2"
+    in3 = "in3"
+    in4 = "in4"
+
+
+############################################################
+
+class Sensors(Enum):
+    gyro_sensor = "gyro_sensor"
+    ir_sensor = "ir_sensor"
+    us_sensor = "us_sensor"
+    button_sensor = "button_sensor"
+    colour_sensor = "colour_sensor"
