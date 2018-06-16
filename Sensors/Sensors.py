@@ -5,11 +5,12 @@ from enum import Enum
 import logging
 import Utility
 
+
 ############################################################
 class Sensors:
 
-    def __init__(self, port, mode=None, sensor_type=None, ir_directions=None):
-        print("startet")
+    def __init__(self, port, mode, sensor_type, ir_directions):
+        print(str(sensor_type) + " wurde initialisiert")
         self.port = port
         self.mode = mode
         self.sensor_type = sensor_type
@@ -23,6 +24,7 @@ class Sensors:
     ############################################################
     # Starten des Glätens
     def start_reading_threads(self, value_type, threads, messwerte, pause):
+        print("Starte " + threads + " Threads")
         gesamtzeit = pause * messwerte  # Zeit eines Durchlaufs(Smoothen Wetres)
         startdifference = gesamtzeit / threads  # Versatz der Threads
         if threads == 1:
@@ -35,7 +37,7 @@ class Sensors:
     ############################################################
     # Werte glätten nach angegebenen Parametern
     def __reading_values(self, messwerte, pause, value_type):
-        logging.warning("Thread started")
+        logging.warning(str(value_type) + "-reading Thread started")
         if value_type == ValueTypes.ir_distance_smooth:
             while self.__isreadingruning:
                 werte = []
@@ -59,7 +61,6 @@ class Sensors:
                     gesamt += wert
                 self.__smoothvalues[value_type] = gesamt / werte.count()
 
-
     ############################################################
 
     def get_value(self, value_type):
@@ -75,10 +76,9 @@ class Sensors:
             if self.__smoothvalues.__contains__(value_type):
                 return self.__smoothvalues[value_type]
             else:
-                logging.warning("No Smooth Value")
+                print("No Smooth Value")
         elif value_type == ValueTypes.ir_distance_smooth:
             return self.__smoothvalues[value_type]
-
 
     ############################################################
 
@@ -89,7 +89,6 @@ class Sensors:
         while value <= -360:
             value += 360
         return value
-
 
     ############################################################
 
