@@ -2,6 +2,7 @@ import threading
 from ev3dev.ev3 import *
 from time import sleep
 from enum import Enum
+import time
 import logging
 import Utility
 
@@ -9,22 +10,21 @@ import Utility
 ############################################################
 class Sensors:
 
-    def __init__(self, port, mode, sensor_type, ir_directions):
+    def __init__(self, port, mode, sensor_type):
         print(str(sensor_type) + " wurde initialisiert")
         self.port = port
         self.mode = mode
         self.sensor_type = sensor_type
         self.__smoothvalues = {}
         self.sensor = Sensor(self.port.value)
-        self.__isreadingruning = False
-        self.ir_directions = ir_directions
+        self.__isreadingruning = True
         if mode is not None:
             self.sensor.mode = self.mode
 
     ############################################################
     # Starten des Glätens
     def start_reading_threads(self, value_type, threads, messwerte, pause):
-        print("Starte " + threads + " Threads")
+        print("Starte " + str(threads) + " Threads")
         gesamtzeit = pause * messwerte  # Zeit eines Durchlaufs(Smoothen Wetres)
         startdifference = gesamtzeit / threads  # Versatz der Threads
         if threads == 1:
@@ -32,34 +32,24 @@ class Sensors:
         for i in range(threads):
             thread = threading.Thread(target=self.__reading_values, args=(messwerte, pause, value_type,))
             thread.start()
+            print("Thread gestartet: " + str(time.time()))
             sleep(startdifference)
 
     ############################################################
     # Werte glätten nach angegebenen Parametern
     def __reading_values(self, messwerte, pause, value_type):
-        logging.warning(str(value_type) + "-reading Thread started")
-        if value_type == ValueTypes.ir_distance_smooth:
-            while self.__isreadingruning:
-                werte = []
-                for x in range(messwerte):
-                    werte.append(self.__get_ir_distance())
-                    sleep(pause)
-                gesamt = 0;
-                for wert in werte:
-                    gesamt += wert
-                logging.warning("Added Value")
-                self.__smoothvalues[value_type] = gesamt / werte.count()
-
-        else:
-            while self.__isreadingruning:
-                werte = []
-                for x in range(messwerte):
-                    werte.append(self.sensor.value())
-                    sleep(pause)
-                gesamt = 0
-                for wert in werte:
-                    gesamt += wert
-                self.__smoothvalues[value_type] = gesamt / werte.count()
+        print(str(value_type) + "-reading Thread started")
+        while self.__isreadingruning:
+            werte = []
+            for x in range(messwerte):
+                werte.append(self.sensor.value())
+                sleep(pause)
+            gesamt = 0
+            for wert in werte:
+                gesamt += wert
+                print("add " + str(wert))
+            if gesamt != 0:
+                self.__smoothvalues[value_type] = gesamt / messwerte
 
     ############################################################
 
@@ -76,9 +66,12 @@ class Sensors:
             if self.__smoothvalues.__contains__(value_type):
                 return self.__smoothvalues[value_type]
             else:
-                print("No Smooth Value")
+                return "No Smooth Value" + str(self.__smoothvalues)
         elif value_type == ValueTypes.ir_distance_smooth:
-            return self.__smoothvalues[value_type]
+            if self.__smoothvalues.__contains__(value_type):
+                return self.__smoothvalues[value_type]
+            else:
+                return "No Smooth Value" + str(self.__smoothvalues)
 
     ############################################################
 
@@ -133,3 +126,10 @@ class ValueTypes(Enum):
     ir_distance_smooth = "ir_distance_smooth"
     ir_angel_smooth = "ir_angel_smooth"
     gyro_angel = "gyro_angel"
+
+############################################################
+
+class Colors(Enum):
+    green = "green"
+    blue = "blue"
+    red = "red"
