@@ -5,4 +5,4 @@ mA = Motor("outA")
 
 sleep(0.5)
 print("Hallo, Helmut!")
-mA.run_forever(speed_sp=300)
+mA.run_forever(speed_sp=500)
