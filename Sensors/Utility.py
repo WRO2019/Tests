@@ -1,9 +1,20 @@
 from enum import Enum
-from Sensors.Utility import Colors
 
 ir_seeker_angle_area = 180
 
+
 ############################################################
+
+class Colors(Enum):
+    no_color = "no_color"
+    black = "black"
+    blue = "blue"
+    green = "green"
+    yellow = "yellow"
+    red = "red"
+    white = "white"
+    brown = "brown"
+
 
 colors = {
     0: Colors.no_color,
@@ -55,15 +66,4 @@ class ValueTypes(Enum):
     # color sensor
     color = "color"
 
-
 ############################################################
-
-class Colors(Enum):
-    no_color = "no_color"
-    black = "black"
-    blue = "blue"
-    green = "green"
-    yellow = "yellow"
-    red = "red"
-    white = "white"
-    brown = "brown"
