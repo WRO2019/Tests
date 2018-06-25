@@ -14,8 +14,12 @@
       <file leaf-file-name="SSH_Client.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SSH_Client.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="136">
               <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+=======
+            <state>
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -25,6 +29,7 @@
       </file>
       <file leaf-file-name="SSH_EV3.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SSH_EV3.py">
+<<<<<<< HEAD
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
@@ -33,15 +38,14 @@
               </folding>
             </state>
           </provider>
+=======
+          <provider selected="true" editor-type-id="text-editor" />
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
         </entry>
       </file>
       <file leaf-file-name="SSH_Utility.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SSH_Utility.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -87,7 +91,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/WRO_2018" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MultiThreading" />
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -167,6 +175,7 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/SSH_Client.py">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
@@ -194,26 +203,48 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SSH_Utility.py">
+=======
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        <state>
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SSH_EV3.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="119">
           <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
+=======
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SSH_Utility.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSH_Utility.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSH_EV3.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/SSH_Client.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="136">
           <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+=======
+        <state>
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>

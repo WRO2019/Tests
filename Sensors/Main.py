@@ -1,17 +1,9 @@
-import Sensors
-import logging
-import time
-
-############################################################
-# Printing Sensors-Values
-
+from Sensors import Sensor
+from time import sleep
+# def __init__(self, port, mode=None, sensor_type=None, ir_directions=None):
+# def start_reading_threads(self, value_type, threads, messwerte, pause)
+ir_seeker = Sensor.Sensor(Sensor.Ports.in1, 'AC-ALL', Sensor.SensorTypes.ir_sensor)
+ir_seeker.start_reading_threads(Sensor.ValueTypes.ir_distance_smooth, 2, 5, 0.2)
 while True:
-    logging.warning("IR-Angel: " + "           " + str(Sensors.get_ir_angel()))
-    logging.warning("IR-Direction: " + "       " + str(Sensors.get_ir_direction()))
-    logging.warning("IR-Distance: " + "        " + str(Sensors.get_ir_distance()))
-    logging.warning("Ultrasonis-Distance: " + "" + str(Sensors.get_ultrasonic_distance()))
-    logging.warning("Gyron-Angel: " + "        " + str(Sensors.get_gyro_angel()))
-    logging.warning("Colour: " + "             " + str(Sensors.get_gyro_angel()))
-    logging.warning("---------------------------------------------")
-
-    time.sleep(0.5)
+    print(str(ir_seeker.get_value(Sensor.ValueTypes.ir_distance_smooth)))
+    sleep(0.5)
