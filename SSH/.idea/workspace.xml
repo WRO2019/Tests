@@ -14,7 +14,12 @@
       <file leaf-file-name="SSH_Client.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SSH_Client.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="136">
+              <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+=======
             <state>
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -24,7 +29,18 @@
       </file>
       <file leaf-file-name="SSH_EV3.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SSH_EV3.py">
+<<<<<<< HEAD
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+=======
           <provider selected="true" editor-type-id="text-editor" />
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
         </entry>
       </file>
       <file leaf-file-name="SSH_Utility.py" pinned="false" current-in-tab="false">
@@ -45,9 +61,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Main.py" />
+        <option value="$PROJECT_DIR$/SSH_Utility.py" />
         <option value="$PROJECT_DIR$/SSH_Client.py" />
         <option value="$PROJECT_DIR$/SSH_EV3.py" />
-        <option value="$PROJECT_DIR$/SSH_Utility.py" />
       </list>
     </option>
   </component>
@@ -75,7 +91,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/WRO_2018" />
+=======
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MultiThreading" />
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -89,6 +109,31 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="SSH_Client" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SSH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SSH_Client.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.SSH_Client" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -106,16 +151,16 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2453125" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -130,6 +175,36 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/SSH_Client.py">
+<<<<<<< HEAD
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSH_EV3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSH_Utility.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SSH_Utility.py">
+=======
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
@@ -140,8 +215,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SSH_EV3.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="119">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+=======
         <state>
           <caret column="28" selection-start-column="28" selection-end-column="28" />
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
         </state>
       </provider>
     </entry>
@@ -156,7 +239,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SSH_Client.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="136">
+          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+=======
         <state>
+>>>>>>> 2c239c82fe3cd74621933c8b0ab3ba7255705649
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>

@@ -14,7 +14,7 @@ ssh.connect(device_name, username=username, password=password, allow_agent=False
 
 channel = ssh.invoke_shell()
 
-ssh.exec_command("python3 SSH_test.py")
+ssh.exec_command("python3 SSH_EV3.py")
 
 #while channel.recv_ready() is False:
 #   sleep(0.01)
