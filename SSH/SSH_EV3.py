@@ -5,10 +5,12 @@ mA = Motor("outA")
 i = 0
 
 sleep(0.5)
-
+i = 0
 
 
 while True:
+    i = i + 1
     print("Ich bins!")
-    print("Helmut!")
+    print("Helmut! Zum", i, ". Mal")
+
 
