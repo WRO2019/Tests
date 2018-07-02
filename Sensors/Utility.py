@@ -16,6 +16,8 @@ class Colors(Enum):
     brown = "brown"
 
 
+############################################################
+
 colors = {
     0: Colors.no_color,
     1: Colors.black,
@@ -49,11 +51,22 @@ class SensorTypes(Enum):
 
 ############################################################
 
+class SensorModes(Enum):
+    ir_gefilter = 'AC-ALL'
+    ir_ungefiltert = 'DC-ALL'
+    color = 'COL-COLOR'
+    reflect = 'COL-REFLECT'
+    ambiente = 'COL-AMBIENT'
+
+
+############################################################
+
 class ValueTypes(Enum):
     raw = "raw"
     ################################
     # gyro sensor
     gyro_angle = "gyro_angle"
+    gyro_angle_smooth = "gyro_angle_smooth"
     ################################
     # ir seeker
     ir_distance = "ir_distance"

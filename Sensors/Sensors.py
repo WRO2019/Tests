@@ -1,21 +1,22 @@
 import threading
-from ev3dev.ev3 import *
+from ev3dev.ev3 import Sensor as EV3Sensor
 from time import sleep
+import time
 from Utility import ValueTypes
 import Utility
 
 
 ############################################################
+
 class Sensor:
 
-    def __init__(self, port, mode, sensor_type):
-        print(str(sensor_type) + " wurde initialisiert")
+    def __init__(self, port, mode):
+        print("Sensor wurde initialisiert")
         self.port = port
         self.mode = mode
-        self.sensor_type = sensor_type
         self.__smoothvalues = {}
-        self.sensor = Sensor(self.port.value)
-        self.isreadingruning = []
+        self.sensor = EV3Sensor(self.port.value)
+        self.isreadingruning = {}
         if mode is not None:
             self.sensor.mode = self.mode
 
@@ -37,32 +38,41 @@ class Sensor:
     ############################################################
     # Werte glätten nach angegebenen Parametern
     def __reading_values(self, messwerte, pause, value_type, number):
-        print(str(value_type) + "-reading Thread-" + number + " started")
+        print(str(value_type) + "-reading Thread-" + str(number) + " started")
         if value_type == ValueTypes.ir_distance_smooth:
             print("IR-Distance")
             while self.isreadingruning[value_type]:
                 werte = []
                 for x in range(messwerte):
-                    werte.append(self.__get_ir_distance())
+                    wert = self.__get_ir_distance()
+                    if wert is not None:
+                        werte.append(wert)
                     sleep(pause)
                 gesamt = 0
                 for wert in werte:
                     gesamt += wert
-                    print("Thread-" + number + "added: " + str(wert))
-                if gesamt != 0:
-                    self.__smoothvalues[value_type] = gesamt / messwerte
+                    print("Thread-" + str(number) + "added: " + str(wert))
+                print("len: " + str(len(werte)))
+                if len(werte) != 0:
+                    self.__smoothvalues[value_type] = gesamt / len(werte)
         else:
             while self.isreadingruning[value_type]:
                 werte = []
                 for x in range(messwerte):
-                    werte.append(self.sensor.value())
+                    try:
+                        wert = self.sensor.value()
+                        if wert is not None:
+                            werte.append(wert)
+                    except ValueError:
+                        print("Fehler smoth")
                     sleep(pause)
                 gesamt = 0
                 for wert in werte:
                     gesamt += wert
-                    print("Thread-" + number + "added: " + str(wert))
-                if gesamt != 0:
-                    self.__smoothvalues[value_type] = gesamt / messwerte
+                    print("Thread-" + str(number) + "added: " + str(wert))
+                print("len: " + str(len(werte)))
+                if len(werte) != 0:
+                    self.__smoothvalues[value_type] = gesamt / len(werte)
 
     ############################################################
 
@@ -72,6 +82,12 @@ class Sensor:
         ################################
         elif value_type == ValueTypes.gyro_angle:
             return self.__get_gyro_angel()
+        ################################
+        elif value_type == ValueTypes.gyro_angle_smooth:
+            if self.__smoothvalues.__contains__(value_type):
+                return self.__smoothvalues[value_type]
+            else:
+                return "No Smooth Value"
         ################################
         elif value_type == ValueTypes.ir_direction:
             return self.sensor.value()
@@ -83,19 +99,22 @@ class Sensor:
             return Utility.ir_seeker_angle_area / 9 * self.sensor.value()
         ################################
         elif value_type == ValueTypes.ir_angle_smooth:
-            return Utility.ir_seeker_angle_area / 9 * self.__smoothvalues[value_type]
+            if self.__smoothvalues.__contains__(value_type):
+                return Utility.ir_seeker_angle_area / 9 * self.__smoothvalues[value_type]
+            else:
+                return "No Smooth Value"
         ################################
         elif value_type == ValueTypes.ir_direction_smooth:
             if self.__smoothvalues.__contains__(value_type):
                 return self.__smoothvalues[value_type]
             else:
-                return "No Smooth Value" + str(self.__smoothvalues)
+                return "No Smooth Value"
         ################################
         elif value_type == ValueTypes.ir_distance_smooth:
             if self.__smoothvalues.__contains__(value_type):
                 return self.__smoothvalues[value_type]
             else:
-                return "No Smooth Value" + str(self.__smoothvalues)
+                return "No Smooth Value"
         ################################
         elif value_type == ValueTypes.color:
             return Utility.colors[self.sensor.value()]
@@ -114,11 +133,13 @@ class Sensor:
 
     def __get_ir_distance(self):
         werte = []
-        werte.append(self.sensor.value('1'))
-        werte.append(self.sensor.value('2'))
-        werte.append(self.sensor.value('3'))
-        werte.append(self.sensor.value('4'))
-        werte.append(self.sensor.value('5'))
-        werte.append(self.sensor.value('6'))
-        werte.sort()
-        return werte[5]
+        try:
+            werte.append(self.sensor.value('1'))
+            werte.append(self.sensor.value('2'))
+            werte.append(self.sensor.value('3'))
+            werte.append(self.sensor.value('4'))
+            werte.append(self.sensor.value('5'))
+            werte.sort()
+            return werte[4]
+        except ValueError:
+            print("Fehler bei distance")
