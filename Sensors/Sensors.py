@@ -1,8 +1,8 @@
 import threading
 from ev3dev.ev3 import *
 from time import sleep
-from Sensors import Utility
-from Sensors.Utility import ValueTypes
+from Utility import ValueTypes
+import Utility
 
 
 ############################################################
@@ -38,17 +38,31 @@ class Sensor:
     # Werte glätten nach angegebenen Parametern
     def __reading_values(self, messwerte, pause, value_type, number):
         print(str(value_type) + "-reading Thread-" + number + " started")
-        while self.isreadingruning[value_type]:
-            werte = []
-            for x in range(messwerte):
-                werte.append(self.sensor.value())
-                sleep(pause)
-            gesamt = 0
-            for wert in werte:
-                gesamt += wert
-                print("Thread-" + number + "added: " + str(wert))
-            if gesamt != 0:
-                self.__smoothvalues[value_type] = gesamt / messwerte
+        if value_type == ValueTypes.ir_distance_smooth:
+            print("IR-Distance")
+            while self.isreadingruning[value_type]:
+                werte = []
+                for x in range(messwerte):
+                    werte.append(self.__get_ir_distance())
+                    sleep(pause)
+                gesamt = 0
+                for wert in werte:
+                    gesamt += wert
+                    print("Thread-" + number + "added: " + str(wert))
+                if gesamt != 0:
+                    self.__smoothvalues[value_type] = gesamt / messwerte
+        else:
+            while self.isreadingruning[value_type]:
+                werte = []
+                for x in range(messwerte):
+                    werte.append(self.sensor.value())
+                    sleep(pause)
+                gesamt = 0
+                for wert in werte:
+                    gesamt += wert
+                    print("Thread-" + number + "added: " + str(wert))
+                if gesamt != 0:
+                    self.__smoothvalues[value_type] = gesamt / messwerte
 
     ############################################################
 
