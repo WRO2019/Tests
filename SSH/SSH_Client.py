@@ -14,10 +14,9 @@ ssh.connect(device_name, username=username, password=password, allow_agent=False
 
 channel = ssh.invoke_shell()
 
-ssh.exec_command("python3 SSH_EV3.py")
 
-#while channel.recv_ready() is False:
-#   sleep(0.01)
-
-results = channel.recv(1024).decode('ascii')
-print('Results: {0}'.format(results))
+stdin, stdout, stderr = ssh.exec_command("python3 SSH_EV3.py",  get_pty=True)
+stdin.close()
+while True:
+    for line in stdout.read().splitlines():
+        print(line)
