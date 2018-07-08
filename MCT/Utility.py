@@ -116,7 +116,7 @@ robot_4_Label.place(x=robot_ImgX + 35, y=robot_ImgY + 360)
 
 console_1_Label = Label(borderwidth=0, bg="black", fg="green")
 console_1_Label.config(text="", font=("Consolas", 12), anchor=W, justify=LEFT)
-console_1_Label.place(x=console_ImgX + 4, y=console_ImgY + 4)
+console_1_Label.place(x=console_ImgX + 10, y=console_ImgY + 8)
 
 
 def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
