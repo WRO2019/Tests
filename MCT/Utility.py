@@ -11,22 +11,37 @@ h = window.winfo_screenheight()
 
 
 # Konfiguriert Bild Adresse
-ir_ImgFile = ['C:\\Users\Kevin\Desktop\MCT\images\IRsensor1.gif',
-              'C:\\Users\Kevin\Desktop\MCT\images\IRsensor2.gif',
-              'C:\\Users\Kevin\Desktop\MCT\images\IRsensor3.gif',
-              'C:\\Users\Kevin\Desktop\MCT\images\IRsensor4.gif',
-              'C:\\Users\Kevin\Desktop\MCT\images\IRsensor5.gif',
-              'C:\\Users\Kevin\Desktop\MCT\images\IRsensor6.gif',
-              'C:\\Users\Kevin\Desktop\MCT\images\IRsensor7.gif',
-              'C:\\Users\Kevin\Desktop\MCT\images\IRsensor8.gif',
-              'C:\\Users\Kevin\Desktop\MCT\images\IRsensor9.gif']
+ir_ImgFile = ['C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor0.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor1.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor2.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor3.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor4.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor5.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor6.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor7.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor8.gif',
+              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor9.gif']
 
-color_ImgFile = "C:\\Users\Kevin\Desktop\MCT\images\Farbsensor.gif"
+color_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Farbsensor.gif"
 
-gyro_ImgFile = "C:\\Users\Kevin\Desktop\MCT\images\Gyrosensor.gif"
+gyro_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Gyrosensor.gif"
 
-robot_ImgFile = "C:\\Users\Kevin\Desktop\MCT\images\Roboter.gif"
+robot_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Roboter.gif"
 
+btn_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Button.gif"
+btn_Img = PhotoImage(file=btn_ImgFile)
+
+console_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Console.gif"
+console_Img = PhotoImage(file=console_ImgFile)
+
+raw = True
+
+line1 = ""
+line2 = ""
+line3 = ""
+line4 = ""
+line5 = ""
+line6 = ""
 
 # rechnet Bild-Größen im richtigen Verhältniss um
 ir_ImgWidth = 620
@@ -49,6 +64,9 @@ robot_ImgHeight = robot_ImgWidth
 robot_ImgX = 0
 robot_ImgY = 30
 
+console_ImgX = 22
+console_ImgY = 895
+
 
 # Foto Widget wird erstellt
 ir_ImgLabel = Label()
@@ -63,6 +81,9 @@ gyro_ImgLabel.place(x=gyro_ImgX, y=gyro_ImgY)
 robot_ImgLabel = Label()
 robot_ImgLabel.place(x=robot_ImgX, y=robot_ImgY)
 
+console_ImgLabel = Label(image=console_Img, bd=0)
+console_ImgLabel.place(x=console_ImgX, y=console_ImgY)
+
 
 # Text Labels werden erstellt und konfiguriert
 ir_1_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
@@ -71,7 +92,7 @@ ir_3_Label = Label(background="black", borderwidth=0, fg="green", text="000", fo
 ir_4_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 ir_5_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 ir_5_Label.place(x=ir_ImgX + 343, y=ir_ImgY + 100)
-ir_4_Label.place(x=ir_ImgX + 230, y=ir_ImgY + 155 - 20)
+ir_4_Label.place(x=ir_ImgX + 230, y=ir_ImgY + 135)
 ir_3_Label.place(x=ir_ImgX + 190, y=ir_ImgY + 240)
 ir_2_Label.place(x=ir_ImgX + 220, y=ir_ImgY + 350)
 ir_1_Label.place(x=ir_ImgX + 343, y=ir_ImgY + 380)
@@ -93,8 +114,12 @@ robot_2_Label.place(x=robot_ImgX + 395, y=robot_ImgY + 360)
 robot_3_Label.place(x=robot_ImgX + 215, y=robot_ImgY + 490)
 robot_4_Label.place(x=robot_ImgX + 35, y=robot_ImgY + 360)
 
+console_1_Label = Label(borderwidth=0, bg="black", fg="green")
+console_1_Label.config(text="", font=("Consolas", 12), anchor=W, justify=LEFT)
+console_1_Label.place(x=console_ImgX + 4, y=console_ImgY + 4)
 
-def ir_sensor_update(DC, AC):
+
+def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
 
     # definiert alle Varialen als global
     global ir_ImgLabel
@@ -104,25 +129,53 @@ def ir_sensor_update(DC, AC):
     global ir_3_Label
     global ir_4_Label
     global ir_5_Label
+    global raw
 
     # updatet Text
-    ir_1_Label.config(text='{:03d}'.format(AC[0]))
-    ir_2_Label.config(text='{:03d}'.format(AC[1]))
-    ir_3_Label.config(text='{:03d}'.format(AC[2]))
-    ir_4_Label.config(text='{:03d}'.format(AC[3]))
-    ir_5_Label.config(text='{:03d}'.format(AC[4]))
+
+    if raw:
+        ir_1_Label.config(text='{:03d}'.format(signal_strenght_raw[0]))
+        ir_2_Label.config(text='{:03d}'.format(signal_strenght_raw[1]))
+        ir_3_Label.config(text='{:03d}'.format(signal_strenght_raw[2]))
+        ir_4_Label.config(text='{:03d}'.format(signal_strenght_raw[3]))
+        ir_5_Label.config(text='{:03d}'.format(signal_strenght_raw[4]))
+
+        ir_5_Label.place(x=ir_ImgX + 343, y=ir_ImgY + 100)
+        ir_4_Label.place(x=ir_ImgX + 230, y=ir_ImgY + 135)
+        ir_3_Label.place(x=ir_ImgX + 190, y=ir_ImgY + 240)
+        ir_2_Label.place(x=ir_ImgX + 220, y=ir_ImgY + 350)
+        ir_1_Label.place(x=ir_ImgX + 343, y=ir_ImgY + 380)
+
+    else:
+        ir_1_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[0]))
+        ir_2_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[1]))
+        ir_3_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[2]))
+        ir_4_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[3]))
+        ir_5_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[4]))
+
+        ir_5_Label.place(x=ir_ImgX + 313, y=ir_ImgY + 80)
+        ir_4_Label.place(x=ir_ImgX + 195, y=ir_ImgY + 135)
+        ir_3_Label.place(x=ir_ImgX + 160, y=ir_ImgY + 240)
+        ir_2_Label.place(x=ir_ImgX + 195, y=ir_ImgY + 350)
+        ir_1_Label.place(x=ir_ImgX + 313, y=ir_ImgY + 400)
 
     # updatet Bild
-    ir_img = Image.open(ir_ImgFile[DC - 1])
+    ir_img = Image.open(ir_ImgFile[direction])
     ir_tkimage = ImageTk.PhotoImage(ir_img.resize((ir_ImgWidth, ir_ImgHeight)))  # verkleinert das Bild (PIL Library benötigt)
     ir_ImgLabel.config(image=ir_tkimage, borderwidth=0)
 
 
-def color_sensor_update(brightness, color):
+def color_sensor_update(brightness_raw, brightness_smooth, color):
     global color_ImgFile
     global color_tkimage
 
-    color_1_Label.config(text='{}{:03d}'.format("B:", brightness))
+    if raw:
+        color_1_Label.config(text='{}{:03d}'.format("B:", brightness_raw))
+        color_1_Label.place(x=color_ImgX + 273, y=color_ImgY + 50)
+    else:
+        color_1_Label.config(text="B:" + '{0:.2f}'.format(brightness_smooth))
+        color_1_Label.place(x=color_ImgX + 240, y=color_ImgY + 50)
+
     color_2_Label.config(text='{:^8s}'.format("C:" + color))
 
     color_img = Image.open(color_ImgFile)
@@ -130,11 +183,16 @@ def color_sensor_update(brightness, color):
     color_ImgLabel.config(image=color_tkimage, borderwidth=0)
 
 
-def gyro_sensor_update(value):
+def gyro_sensor_update(value_raw, value_smooth):
     global gyro_ImgFile
     global gyro_tkimage
 
-    gyro_1_Label.config(text='{:>4}'.format('{:03d}'.format(value)))
+    if raw:
+        gyro_1_Label.config(text='{:>4}'.format('{:03d}'.format(value_raw)))
+        gyro_1_Label.place(x=gyro_ImgX + 204, y=gyro_ImgY + 80)
+    else:
+        gyro_1_Label.config(text='{:>6}'.format('{0:.2f}'.format(value_smooth)))
+        gyro_1_Label.place(x=gyro_ImgX + 180, y=gyro_ImgY + 80)
 
     gyro_img = Image.open(gyro_ImgFile)
     gyro_tkimage = ImageTk.PhotoImage(gyro_img.resize((gyro_ImgWidth, gyro_ImgHeight)))  # verkleinert das Bild (PIL Library benötigt)
@@ -155,7 +213,80 @@ def motor_update(value1, value2, value3, value4):
     robot_ImgLabel.config(image=robot_tkimage, borderwidth=0)
 
 
-# Fenster wird Konfiguriert
+def console_print(string):
+    global line1
+    global line2
+    global line3
+    global line4
+    global line5
+    global line6
+
+    if line6 == "":
+        if line1 == "":
+            line1 = string
+        elif line2 == "":
+            line2 = string
+        elif line3 == "":
+            line3 = string
+        elif line4 == "":
+            line4 = string
+        elif line5 == "":
+            line5 = string
+        else:
+            line6 = string
+    else:
+        line1 = line2
+        line2 = line3
+        line3 = line4
+        line4 = line5
+        line5 = line6
+        line6 = string
+
+    console_1_Label.config(text="{0}\n{1}\n{2}\n{3}\n{4}\n{5}".format(line1, line2, line3, line4, line5, line6))
+
+
+def start_programm():
+    print("started Programm!")
+
+
+def stop_programm():
+    print("stoped Programm!")
+
+
+def upload_programm():
+    print("uploaded Programm!")
+
+
+def state_raw():
+    global raw
+
+    raw = True
+
+
+def state_smooth():
+    global raw
+
+    raw = False
+
+
+# Fenster wird konfiguriert
 window.title("MCT - Misson Contoll Terminal")
 window.geometry('%dx%d+%d+%d' % (w, h, -7, 0))
 window.configure(background='black')
+
+
+# Buttons werden konfiguriert
+start_btn = Button(window, text="START", command=start_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_Img, compound=CENTER)
+stop_btn = Button(window, text="STOP", command=stop_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_Img, compound=CENTER)
+upload_btn = Button(window, text="UPLOAD", command=upload_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_Img, compound=CENTER)
+raw_btn = Radiobutton(window, text="RAW DATA", value=1, bg="black", fg="green", font=("Consolas", 15), activebackground="black", activeforeground="green", selectcolor="black", command=state_raw)
+smooth_btn = Radiobutton(window, text="SMOOTHED DATA", value=2, bg="black", fg="green", font=("Consolas", 15), activebackground="black", activeforeground="green", selectcolor="black", command=state_smooth)
+
+raw_btn.select()
+smooth_btn.deselect()
+
+start_btn.place(x=20, y=820)
+stop_btn.place(x=260, y=820)
+upload_btn.place(x=500, y=820)
+raw_btn.place(x=730, y=815)
+smooth_btn.place(x=730, y=845)
