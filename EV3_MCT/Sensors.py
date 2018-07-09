@@ -18,7 +18,7 @@ class Sensor:
         self.sensor = EV3Sensor(self.port.value)
         self.isreadingruning = {}
         if mode is not None:
-            self.sensor.mode = self.mode
+            self.sensor.mode = self.mode.value
 
     ############################################################
     # Starten des Glätens
