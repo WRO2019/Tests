@@ -11,30 +11,31 @@ h = window.winfo_screenheight()
 
 
 # Konfiguriert Bild Adresse
-ir_ImgFile = ['C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor0.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor1.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor2.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor3.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor4.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor5.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor6.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor7.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor8.gif',
-              'C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\IRsensor9.gif']
+ir_ImgFile = ['C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor0.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor1.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor2.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor3.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor4.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor5.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor6.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor7.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor8.gif',
+              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor9.gif']
 
-color_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Farbsensor.gif"
+color_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Farbsensor.gif"
 
-gyro_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Gyrosensor.gif"
+gyro_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Gyrosensor.gif"
 
-robot_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Roboter.gif"
+robot_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Roboter.gif"
 
-btn_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Button.gif"
-btn_Img = PhotoImage(file=btn_ImgFile)
+btn_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Button.gif"
 
-console_ImgFile = "C:\\Users\Kevin\Documents\GitHub\Tests\MCT\images\Console.gif"
+console_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Console.gif"
 console_Img = PhotoImage(file=console_ImgFile)
 
 raw = True
+
+resolution = window.winfo_screenheight() / 1080
 
 line1 = ""
 line2 = ""
@@ -44,28 +45,28 @@ line5 = ""
 line6 = ""
 
 # rechnet Bild-Größen im richtigen Verhältniss um
-ir_ImgWidth = 620
+ir_ImgWidth = int(620 * resolution)
 ir_ImgHeight = int((ir_ImgWidth / 1520) * 1280)
-ir_ImgX = 430
-ir_ImgY = 10
+ir_ImgX = int(430 * resolution)
+ir_ImgY = int(10 * resolution)
 
-color_ImgWidth = 400
+color_ImgWidth = int(400 * resolution)
 color_ImgHeight = int((color_ImgWidth / 1248) * 642)
-color_ImgX = 50
-color_ImgY = 570
+color_ImgX = int(50 * resolution)
+color_ImgY = int(570 * resolution)
 
-gyro_ImgWidth = 328
+gyro_ImgWidth = int(328 * resolution)
 gyro_ImgHeight = int((gyro_ImgWidth / 1024) * 640)
-gyro_ImgX = 530
-gyro_ImgY = 570
+gyro_ImgX = int(530 * resolution)
+gyro_ImgY = int(570 * resolution)
 
-robot_ImgWidth = 500
+robot_ImgWidth = int(500 * resolution)
 robot_ImgHeight = robot_ImgWidth
-robot_ImgX = 0
-robot_ImgY = 30
+robot_ImgX = int(0 * resolution)
+robot_ImgY = int(30 * resolution)
 
-console_ImgX = 22
-console_ImgY = 895
+console_ImgX = int(22 * resolution)
+console_ImgY = int(895 * resolution)
 
 
 # Foto Widget wird erstellt
@@ -91,32 +92,32 @@ ir_2_Label = Label(background="black", borderwidth=0, fg="green", text="000", fo
 ir_3_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 ir_4_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 ir_5_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
-ir_5_Label.place(x=ir_ImgX + 343, y=ir_ImgY + 100)
-ir_4_Label.place(x=ir_ImgX + 230, y=ir_ImgY + 135)
-ir_3_Label.place(x=ir_ImgX + 190, y=ir_ImgY + 240)
-ir_2_Label.place(x=ir_ImgX + 220, y=ir_ImgY + 350)
-ir_1_Label.place(x=ir_ImgX + 343, y=ir_ImgY + 380)
+ir_5_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 100 * resolution))
+ir_4_Label.place(x=int(ir_ImgX + 230 * resolution), y=int(ir_ImgY + 135 * resolution))
+ir_3_Label.place(x=int(ir_ImgX + 190 * resolution), y=int(ir_ImgY + 240 * resolution))
+ir_2_Label.place(x=int(ir_ImgX + 220 * resolution), y=int(ir_ImgY + 350 * resolution))
+ir_1_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 380 * resolution))
 
 color_1_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 color_2_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 23))
-color_1_Label.place(x=color_ImgX + 273, y=color_ImgY + 50)
-color_2_Label.place(x=color_ImgX + 245, y=color_ImgY + 110)
+color_1_Label.place(x=int(color_ImgX + 273 * resolution), y=int(color_ImgY + 50 * resolution))
+color_2_Label.place(x=int(color_ImgX + 245 * resolution), y=int(color_ImgY + 110 * resolution))
 
 gyro_1_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
-gyro_1_Label.place(x=gyro_ImgX + 204, y=gyro_ImgY + 80)
+gyro_1_Label.place(x=int(gyro_ImgX + 204 * resolution), y=int(gyro_ImgY + 80 * resolution))
 
 robot_1_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 robot_2_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 robot_3_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 robot_4_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
-robot_1_Label.place(x=robot_ImgX + 215, y=robot_ImgY - robot_ImgY)
-robot_2_Label.place(x=robot_ImgX + 395, y=robot_ImgY + 360)
-robot_3_Label.place(x=robot_ImgX + 215, y=robot_ImgY + 490)
-robot_4_Label.place(x=robot_ImgX + 35, y=robot_ImgY + 360)
+robot_1_Label.place(x=int(robot_ImgX + 215 * resolution), y=0)                                                  # vielleicht y = 0 falsch positioniert!
+robot_2_Label.place(x=int(robot_ImgX + 395 * resolution), y=int(robot_ImgY + 360 * resolution))
+robot_3_Label.place(x=int(robot_ImgX + 215 * resolution), y=int(robot_ImgY + 490 * resolution))
+robot_4_Label.place(x=int(robot_ImgX + 35 * resolution), y=int(robot_ImgY + 360 * resolution))
 
 console_1_Label = Label(borderwidth=0, bg="black", fg="green")
 console_1_Label.config(text="", font=("Consolas", 12), anchor=W, justify=LEFT)
-console_1_Label.place(x=console_ImgX + 10, y=console_ImgY + 8)
+console_1_Label.place(x=int(console_ImgX + 10 * resolution), y=int(console_ImgY + 8 * resolution))
 
 
 def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
@@ -140,11 +141,11 @@ def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
         ir_4_Label.config(text='{:03d}'.format(signal_strenght_raw[3]))
         ir_5_Label.config(text='{:03d}'.format(signal_strenght_raw[4]))
 
-        ir_5_Label.place(x=ir_ImgX + 343, y=ir_ImgY + 100)
-        ir_4_Label.place(x=ir_ImgX + 230, y=ir_ImgY + 135)
-        ir_3_Label.place(x=ir_ImgX + 190, y=ir_ImgY + 240)
-        ir_2_Label.place(x=ir_ImgX + 220, y=ir_ImgY + 350)
-        ir_1_Label.place(x=ir_ImgX + 343, y=ir_ImgY + 380)
+        ir_5_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 100 * resolution))
+        ir_4_Label.place(x=int(ir_ImgX + 230 * resolution), y=int(ir_ImgY + 135 * resolution))
+        ir_3_Label.place(x=int(ir_ImgX + 190 * resolution), y=int(ir_ImgY + 240 * resolution))
+        ir_2_Label.place(x=int(ir_ImgX + 220 * resolution), y=int(ir_ImgY + 350 * resolution))
+        ir_1_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 380 * resolution))
 
     else:
         ir_1_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[0]))
@@ -153,11 +154,11 @@ def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
         ir_4_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[3]))
         ir_5_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[4]))
 
-        ir_5_Label.place(x=ir_ImgX + 313, y=ir_ImgY + 80)
-        ir_4_Label.place(x=ir_ImgX + 195, y=ir_ImgY + 135)
-        ir_3_Label.place(x=ir_ImgX + 160, y=ir_ImgY + 240)
-        ir_2_Label.place(x=ir_ImgX + 195, y=ir_ImgY + 350)
-        ir_1_Label.place(x=ir_ImgX + 313, y=ir_ImgY + 400)
+        ir_5_Label.place(x=int(ir_ImgX + 313 * resolution), y=int(ir_ImgY + 80 * resolution))
+        ir_4_Label.place(x=int(ir_ImgX + 195 * resolution), y=int(ir_ImgY + 135 * resolution))
+        ir_3_Label.place(x=int(ir_ImgX + 160 * resolution), y=int(ir_ImgY + 240 * resolution))
+        ir_2_Label.place(x=int(ir_ImgX + 195 * resolution), y=int(ir_ImgY + 350 * resolution))
+        ir_1_Label.place(x=int(ir_ImgX + 313 * resolution), y=int(ir_ImgY + 400 * resolution))
 
     # updatet Bild
     ir_img = Image.open(ir_ImgFile[direction])
@@ -171,10 +172,10 @@ def color_sensor_update(brightness_raw, brightness_smooth, color):
 
     if raw:
         color_1_Label.config(text='{}{:03d}'.format("B:", brightness_raw))
-        color_1_Label.place(x=color_ImgX + 273, y=color_ImgY + 50)
+        color_1_Label.place(x=int(color_ImgX + 273 * resolution), y=int(color_ImgY + 50 * resolution))
     else:
         color_1_Label.config(text="B:" + '{0:.2f}'.format(brightness_smooth))
-        color_1_Label.place(x=color_ImgX + 240, y=color_ImgY + 50)
+        color_1_Label.place(x=int(color_ImgX + 240 * resolution), y=int(color_ImgY + 50 * resolution))
 
     color_2_Label.config(text='{:^8s}'.format("C:" + color))
 
@@ -189,10 +190,10 @@ def gyro_sensor_update(value_raw, value_smooth):
 
     if raw:
         gyro_1_Label.config(text='{:>4}'.format('{:03d}'.format(value_raw)))
-        gyro_1_Label.place(x=gyro_ImgX + 204, y=gyro_ImgY + 80)
+        gyro_1_Label.place(x=int(gyro_ImgX + 204 * resolution), y=int(gyro_ImgY + 80 * resolution))
     else:
         gyro_1_Label.config(text='{:>6}'.format('{0:.2f}'.format(value_smooth)))
-        gyro_1_Label.place(x=gyro_ImgX + 180, y=gyro_ImgY + 80)
+        gyro_1_Label.place(x=int(gyro_ImgX + 180 * resolution), y=int(gyro_ImgY + 80 * resolution))
 
     gyro_img = Image.open(gyro_ImgFile)
     gyro_tkimage = ImageTk.PhotoImage(gyro_img.resize((gyro_ImgWidth, gyro_ImgHeight)))  # verkleinert das Bild (PIL Library benötigt)
@@ -276,17 +277,24 @@ window.configure(background='black')
 
 
 # Buttons werden konfiguriert
-start_btn = Button(window, text="START", command=start_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_Img, compound=CENTER)
-stop_btn = Button(window, text="STOP", command=stop_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_Img, compound=CENTER)
-upload_btn = Button(window, text="UPLOAD", command=upload_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_Img, compound=CENTER)
+
+btn_ImgHeight = 50
+btn_ImgWidth = 200
+
+btn_Img = Image.open(btn_ImgFile)                                                          # btn Imge wird resized
+btn_tkimage = ImageTk.PhotoImage(btn_Img.resize(int(btn_ImgWidth * resolution), int(btn_ImgHeight * resolution)))
+
+start_btn = Button(window, text="START", command=start_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_tkimage, compound=CENTER)
+stop_btn = Button(window, text="STOP", command=stop_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_tkimage, compound=CENTER)
+upload_btn = Button(window, text="UPLOAD", command=upload_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_tkimage, compound=CENTER)
 raw_btn = Radiobutton(window, text="RAW DATA", value=1, bg="black", fg="green", font=("Consolas", 15), activebackground="black", activeforeground="green", selectcolor="black", command=state_raw)
 smooth_btn = Radiobutton(window, text="SMOOTHED DATA", value=2, bg="black", fg="green", font=("Consolas", 15), activebackground="black", activeforeground="green", selectcolor="black", command=state_smooth)
 
 raw_btn.select()
 smooth_btn.deselect()
 
-start_btn.place(x=20, y=820)
-stop_btn.place(x=260, y=820)
-upload_btn.place(x=500, y=820)
-raw_btn.place(x=730, y=815)
-smooth_btn.place(x=730, y=845)
+start_btn.place(x=int(20 * resolution), y=int(820 * resolution))
+stop_btn.place(x=int(260 * resolution), y=int(820 * resolution))
+upload_btn.place(x=int(500 * resolution), y=int(820 * resolution))
+raw_btn.place(x=int(730 * resolution), y=int(815 * resolution))
+smooth_btn.place(x=int(730 * resolution), y=int(845 * resolution))
