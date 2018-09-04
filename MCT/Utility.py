@@ -284,7 +284,7 @@ btn_ImgHeight = 50
 btn_ImgWidth = 200
 
 btn_Img = Image.open(btn_ImgFile)                                                          # btn Imge wird resized
-btn_tkimage = ImageTk.PhotoImage(btn_Img.resize(int(btn_ImgWidth * resolution), int(btn_ImgHeight * resolution)))
+btn_tkimage = ImageTk.PhotoImage(btn_Img.resize((int(btn_ImgWidth * resolution), int(btn_ImgHeight * resolution))))
 
 start_btn = Button(window, text="START", command=start_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_tkimage, compound=CENTER)
 stop_btn = Button(window, text="STOP", command=stop_programm, bg="black", fg="green", activebackground="black", activeforeground="green", bd=0, font=("Consolas", 25), image=btn_tkimage, compound=CENTER)
