@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import ImageTk
 from PIL import Image
+import getpass
 
 window = Tk()  # Fenster wir erstellt
 
@@ -9,28 +10,29 @@ window = Tk()  # Fenster wir erstellt
 w = int(window.winfo_screenwidth() / 2)
 h = window.winfo_screenheight()
 
+userName = getpass.getuser()
 
 # Konfiguriert Bild Adresse
-ir_ImgFile = ['C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor0.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor1.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor2.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor3.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor4.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor5.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor6.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor7.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor8.gif',
-              'C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\IRsensor9.gif']
+ir_ImgFile = [f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor0.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor1.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor2.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor3.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor4.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor5.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor6.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor7.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor8.gif',
+              f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor9.gif']
 
-color_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Farbsensor.gif"
+color_ImgFile = f"C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\Farbsensor.gif"
 
-gyro_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Gyrosensor.gif"
+gyro_ImgFile = f"C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\Gyrosensor.gif"
 
-robot_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Roboter.gif"
+robot_ImgFile = f"C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\Roboter.gif"
 
-btn_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Button.gif"
+btn_ImgFile = f"C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\Button.gif"
 
-console_ImgFile = "C:\\Users\Roboscope\Documents\GitHub\Tests\MCT\images\Console.gif"
+console_ImgFile = f"C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\Console.gif"
 console_Img = PhotoImage(file=console_ImgFile)
 
 raw = True
