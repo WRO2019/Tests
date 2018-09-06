@@ -14,7 +14,6 @@ _thread.start_new_thread(Utility.print_time, ("Thread-1", 1,))  # Threads starte
 thread = threading.Thread(target=Utility.print_time, args=("Thread-2", 3,))
 Utility.threads.append(thread)
 thread.start()
-
 ########################################
 
 i = 0

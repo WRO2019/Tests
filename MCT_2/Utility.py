@@ -137,11 +137,11 @@ def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
     # updatet Text
 
     if raw:
-        ir_1_Label.config(text='{:03d}'.format(signal_strenght_raw[0]))
-        ir_2_Label.config(text='{:03d}'.format(signal_strenght_raw[1]))
-        ir_3_Label.config(text='{:03d}'.format(signal_strenght_raw[2]))
-        ir_4_Label.config(text='{:03d}'.format(signal_strenght_raw[3]))
-        ir_5_Label.config(text='{:03d}'.format(signal_strenght_raw[4]))
+        ir_1_Label.config(text='{:03d}'.format(signal_strenght_raw))
+        ir_2_Label.config(text='{:03d}'.format(signal_strenght_raw))
+        ir_3_Label.config(text='{:03d}'.format(signal_strenght_raw))
+        ir_4_Label.config(text='{:03d}'.format(signal_strenght_raw))
+        ir_5_Label.config(text='{:03d}'.format(signal_strenght_raw))
 
         ir_5_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 100 * resolution))
         ir_4_Label.place(x=int(ir_ImgX + 230 * resolution), y=int(ir_ImgY + 135 * resolution))
@@ -150,11 +150,11 @@ def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
         ir_1_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 380 * resolution))
 
     else:
-        ir_1_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[0]))
-        ir_2_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[1]))
-        ir_3_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[2]))
-        ir_4_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[3]))
-        ir_5_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[4]))
+        ir_1_Label.config(text='{0:.2f}'.format(signal_strenght_smooth))
+        ir_2_Label.config(text='{0:.2f}'.format(signal_strenght_smooth))
+        ir_3_Label.config(text='{0:.2f}'.format(signal_strenght_smooth))
+        ir_4_Label.config(text='{0:.2f}'.format(signal_strenght_smooth))
+        ir_5_Label.config(text='{0:.2f}'.format(signal_strenght_smooth))
 
         ir_5_Label.place(x=int(ir_ImgX + 313 * resolution), y=int(ir_ImgY + 80 * resolution))
         ir_4_Label.place(x=int(ir_ImgX + 195 * resolution), y=int(ir_ImgY + 135 * resolution))
@@ -171,13 +171,14 @@ def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
 def color_sensor_update(brightness_raw, brightness_smooth, color):
     global color_ImgFile
     global color_tkimage
-
-    if raw:
-        color_1_Label.config(text='{}{:03d}'.format("B:", brightness_raw))
-        color_1_Label.place(x=int(color_ImgX + 273 * resolution), y=int(color_ImgY + 50 * resolution))
-    else:
-        color_1_Label.config(text="B:" + '{0:.2f}'.format(brightness_smooth))
-        color_1_Label.place(x=int(color_ImgX + 240 * resolution), y=int(color_ImgY + 50 * resolution))
+    color = str(color)
+    #if raw:
+    #    color_1_Label.config(text='{}{:03d}'.format("B:", brightness_raw))
+    #
+    #    color_1_Label.place(x=int(color_ImgX + 273 * resolution), y=int(color_ImgY + 50 * resolution))
+    #else:
+    #    color_1_Label.config(text="B:" + '{0:.2f}'.format(brightness_smooth))
+    #    color_1_Label.place(x=int(color_ImgX + 240 * resolution), y=int(color_ImgY + 50 * resolution))
 
     color_2_Label.config(text='{:^8s}'.format("C:" + color))
 
@@ -264,12 +265,16 @@ def state_raw():
     global raw
 
     raw = True
+    window.update_idletasks()
+    window.update()
 
 
 def state_smooth():
     global raw
 
     raw = False
+    window.update_idletasks()
+    window.update()
 
 
 # Fenster wird konfiguriert

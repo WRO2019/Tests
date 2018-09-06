@@ -1,7 +1,8 @@
 from Utility import *
 import time
 from random import *
-
+from SSH_Utility import ValueTypes
+from SSH_Data import decode_input
 color = ["none", "black", "blue", "green", "yellow", "red", "white", "brown"]
 
 code = ["File CUsers\Kevin\Documents\GitHub\Tests\MCTUtility.py, line 1",
@@ -12,13 +13,35 @@ code = ["File CUsers\Kevin\Documents\GitHub\Tests\MCTUtility.py, line 1",
         "self.tk.call(_flatten((self._w, cmd)) + self._options(cnf))   ",
         "_tkinter.TclError: invalid command name .!label6              "]
 
+
+def get_prepared_value(valueType):
+    return valueType + ":" + str(randint(0, 9)) + ";"
+
+
+def get_code():
+    ###############################################################################
+    # Werte wegschicken
+
+    output = "datas:"
+    output += get_prepared_value(ValueTypes.gyro_angle.value)
+    output += get_prepared_value(ValueTypes.gyro_angle_smooth.value)
+    #################################
+    output += get_prepared_value(ValueTypes.ir_direction.value)
+    output += get_prepared_value(ValueTypes.ir_direction_smooth.value)
+    output += get_prepared_value(ValueTypes.ir_angle.value)
+    output += get_prepared_value(ValueTypes.ir_angle_smooth.value)
+    output += get_prepared_value(ValueTypes.ir_distance.value)
+    output += get_prepared_value(ValueTypes.ir_distance_smooth.value)
+    #################################
+    output += get_prepared_value(ValueTypes.color.value)
+    output += get_prepared_value(ValueTypes.reflect.value)
+    output += get_prepared_value(ValueTypes.ambiente.value)
+    return output
+
 while True:
-    ir_sensor_update(randint(0, 9), [randint(0, 999), randint(0, 999), randint(0, 999), randint(0, 999), randint(0, 999)], [uniform(0, 999), uniform(0, 999), uniform(0, 999), uniform(0, 999), uniform(0, 999)])
-    color_sensor_update(randint(0, 100), uniform(0, 100), color[randint(0, 7)])
-    gyro_sensor_update(randint(-360, 360), uniform(-360, 360))
     motor_update(randint(0, 100), randint(0, 100), randint(0, 100), randint(0, 100))
-    console_print(code[randint(0, 6)])
+    decode_input(get_code())
 
     window.update_idletasks()
     window.update()
-    time.sleep(0.2)
+    time.sleep(2)

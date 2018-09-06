@@ -1,4 +1,7 @@
 from enum import Enum
+from Sensors import Sensor
+
+############################################################
 
 ir_seeker_angle_area = 180
 
@@ -79,5 +82,16 @@ class ValueTypes(Enum):
     color = "color"
     reflect = "reflect"
     ambiente = "ambiente"
+
+
+############################################################
+
+ir_seeker = Sensor(Ports.in1, SensorModes.ir_gefilter)
+gyro_sensor = Sensor(Ports.in2, None)
+color_sensor = Sensor(Ports.in3, None)
+
+gyro_sensor.start_reading_threads(ValueTypes.gyro_angle_smooth, 2, 5, 0.1)
+ir_seeker.start_reading_threads(ValueTypes.ir_direction_smooth, 2, 5, 0.1)
+ir_seeker.start_reading_threads(ValueTypes.ir_angle_smooth, 2, 5, 0.1)
 
 ############################################################
