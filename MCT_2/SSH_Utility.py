@@ -1,21 +1,21 @@
 from enum import Enum
 
 class Values():
-    gyro_angle = None
-    gyro_angle_smooth = None
+    gyro_angle = 404
+    gyro_angle_smooth = 404
     ################################
     # ir seeker
-    ir_distance = None
-    ir_direction = None
-    ir_angle = None
-    ir_distance_smooth = None
-    ir_direction_smooth = None
-    ir_angle_smooth = None
+    ir_distance = 404
+    ir_direction = 404
+    ir_angle = 404
+    ir_distance_smooth = 404
+    ir_direction_smooth = 404
+    ir_angle_smooth = 404
     ################################
     # color sensor
-    color = None
-    reflect = None
-    ambiente = None
+    color = 404
+    reflect = 404
+    ambiente = 404
 
 
 class ValueTypes(Enum):

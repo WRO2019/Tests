@@ -13,7 +13,7 @@ def decode_input(input):
                 if key != ";":
                     value += key
                 else:
-                    value = int(value)
+                    value = int(float(value))
                     values.append(Value(value, value_type, ))
                     value_active = False
                     value = ""
@@ -43,19 +43,21 @@ def decode_input(input):
 
             elif value.valueType == ValueTypes.ir_distance.value:
                 Values.ir_distance = value.value
-                ir_sensor_update(value.value, Values.ir_distance, Values.ir_distance_smooth)
+                ir_sensor_update(Values.ir_distance, value.value, Values.ir_distance_smooth)
                 ##
             elif value.valueType == ValueTypes.ir_angle_smooth.value:
                 Values.ir_angle_smooth = value.value
-
+                ir_sensor_update(Values.ir_direction, Values.ir_distance, Values.ir_distance_smooth)
             elif value.valueType == ValueTypes.ir_angle.value:
                 Values.ir_angle = value.value
                 ##
             elif value.valueType == ValueTypes.ir_direction_smooth.value:
                 Values.ir_direction_smooth = value.value
+                ir_sensor_update(Values.ir_direction, Values.ir_distance, Values.ir_distance_smooth)
 
             elif value.valueType == ValueTypes.ir_direction.value:
                 Values.ir_direction = value.value
+                ir_sensor_update(value.value, Values.ir_distance, Values.ir_distance_smooth)
                 ##
             elif value.valueType == ValueTypes.gyro_angle_smooth.value:
                 Values.gyro_angle_smooth = value.value
