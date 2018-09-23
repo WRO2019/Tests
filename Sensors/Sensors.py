@@ -117,6 +117,15 @@ class Sensor:
                 return "No Smooth Value"
         ################################
         elif value_type == ValueTypes.color:
+            self.sensor.mode = Utility.SensorModes.color
+            return Utility.colors[self.sensor.value()]
+        ################################
+        elif value_type == ValueTypes.reflect:
+            self.sensor.mode = Utility.SensorModes.reflect
+            return Utility.colors[self.sensor.value()]
+        ################################
+        elif value_type == ValueTypes.ambiente:
+            self.sensor.mode = Utility.SensorModes.ambiente
             return Utility.colors[self.sensor.value()]
 
     ############################################################

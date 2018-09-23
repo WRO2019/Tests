@@ -78,5 +78,7 @@ class ValueTypes(Enum):
     ################################
     # color sensor
     color = "color"
+    reflect = "reflect"
+    ambiente = "ambiente"
 
 ############################################################
