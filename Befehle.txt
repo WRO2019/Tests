@@ -1,5 +1,6 @@
 set PATH=C:\Program Files (x86)\PuTTY\
 pscp C:\Users\Roboscope\Documents\GitHub\WRO_2018_Programs\EV3_Base\*py robot@ev3dev:/home/robot/
+pscp C:\Users\Roboscope\Documents\GitHub\Tests\Sensors\*py robot@ev3dev:/home/robot/
 python3 Main.py
 
 https://stackoverflow.com/questions/68335/how-to-copy-a-file-to-a-remote-server-in-python-using-scp-or-ssh
