@@ -31,4 +31,5 @@ while True:
     print(gyro_sensor.get_value(ValueTypes.gyro_angle))
     print("Ultraschall")
     print(ultrasonic_sensor.get_value(ValueTypes.ultrasonic_distance))
+    print("------------------------------------")
     sleep(5)

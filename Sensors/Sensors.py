@@ -13,13 +13,14 @@ class Ir_Seeker:
         self.__smoothvalues = {}
         self.sensor = EV3Sensor(self.port.value)
         self.isreadingruning = {}
+        self.__lastValues = {}
         self.sensor.mode = SensorModes.ir_gefilter.value
         print("Ir-Seeker wurde initialisiert")
 
     def start_ir_direction_smooth(self):
         for i in range(2):
-            self.isreadingruning[ValueTypes.ir_angle_smooth] = True
-            thread = threading.Thread(target=self.__reading_values, args=(5, 0.2, ValueTypes.ir_angle_smooth,))
+            self.isreadingruning[ValueTypes.ir_direction_smooth] = True
+            thread = threading.Thread(target=self.__reading_values, args=(5, 0.2, ValueTypes.ir_direction_smooth,))
             thread.start()
             sleep(0.5)
         print("Ir-direction-smooth wurde gestartet")
@@ -42,7 +43,7 @@ class Ir_Seeker:
                         if wert is not None:
                             werte.append(wert)
                     except ValueError:
-                        print("Fehler Ir Distance Smooth")
+                        break
                     sleep(pause)
                 gesamt = 0
                 for wert in werte:
@@ -58,7 +59,7 @@ class Ir_Seeker:
                         if wert is not None:
                             werte.append(wert)
                     except ValueError:
-                        print("Fehler Ir Angel Smooth")
+                        break
                     sleep(pause)
                 gesamt = 0
                 for wert in werte:
@@ -77,38 +78,92 @@ class Ir_Seeker:
             werte.sort()
             return werte[4]
         except ValueError:
-            print("Fehler bei get_ir_distance")
+            None
 
     def get_value(self, value_type):
         try:
             if value_type == ValueTypes.ir_direction:
-                return self.sensor.value()
-            ################################
-            elif value_type == ValueTypes.ir_distance:
-                return self.__get_ir_distance()
-            ################################
-            elif value_type == ValueTypes.ir_angle:
-                return Utility.ir_seeker_angle_area / 9 * self.sensor.value()
-            ################################
-            elif value_type == ValueTypes.ir_angle_smooth:
-                if self.__smoothvalues.__contains__(value_type):
-                    return Utility.ir_seeker_angle_area / 9 * self.__smoothvalues[value_type]
+                value = self.sensor.value()
+                if value is not None:
+                    self.__lastValues[value_type] = value
+                    return value
+                elif self.__lastValues.__contains__(value_type):
+                    return self.__lastValues[value_type]
                 else:
                     return None
+            ################################
+            elif value_type == ValueTypes.ir_distance:
+                value = self.__get_ir_distance()
+                if value is not None:
+                    self.__lastValues[value_type] = value
+                    return value
+                elif self.__lastValues.__contains__(value_type):
+                    return self.__lastValues[value_type]
+                else:
+                    return None
+            ################################
+            elif value_type == ValueTypes.ir_angle:
+                value = Utility.ir_seeker_angle_area / 9 * self.sensor.value()
+                if value is not None:
+                    self.__lastValues[value_type] = value
+                    return value
+                elif self.__lastValues.__contains__(value_type):
+                    return self.__lastValues[value_type]
+                else:
+                    return None
+            ################################
+            elif value_type == ValueTypes.ir_angle_smooth:
+                if self.__smoothvalues.__contains__(ValueTypes.ir_direction_smooth):
+                    value = Utility.ir_seeker_angle_area / 9 * self.__smoothvalues[ValueTypes.ir_direction_smooth]
+                    if value is not None:
+                        self.__lastValues[value_type] = value
+                        return value
+                    elif self.__lastValues.__contains__(value_type):
+                        return self.__lastValues[value_type]
+                    else:
+                        return None
+                else:
+                    if self.__lastValues.__contains__(value_type):
+                        return self.__lastValues[value_type]
+                    else:
+                        return None
             ################################
             elif value_type == ValueTypes.ir_direction_smooth:
                 if self.__smoothvalues.__contains__(value_type):
-                    return self.__smoothvalues[value_type]
+                    value = self.__smoothvalues[value_type]
+                    if value is not None:
+                        self.__lastValues[value_type] = value
+                        return value
+                    elif self.__lastValues.__contains__(value_type):
+                        return self.__lastValues[value_type]
+                    else:
+                        return None
                 else:
-                    return None
+                    if self.__lastValues.__contains__(value_type):
+                        return self.__lastValues[value_type]
+                    else:
+                        return None
             ################################
             elif value_type == ValueTypes.ir_distance_smooth:
                 if self.__smoothvalues.__contains__(value_type):
-                    return self.__smoothvalues[value_type]
+                    value = self.__smoothvalues[value_type]
+                    if value is not None:
+                        self.__lastValues[value_type] = value
+                        return value
+                    elif self.__lastValues.__contains__(value_type):
+                        return self.__lastValues[value_type]
+                    else:
+                        return None
                 else:
-                    return None
+                    if self.__lastValues.__contains__(value_type):
+                        return self.__lastValues[value_type]
+                    else:
+                        return None
         except ValueError:
-            return None
+            if self.__lastValues.__contains__(value_type):
+                return self.__lastValues[value_type]
+            else:
+                return None
 
 
 ############################################################
@@ -119,6 +174,7 @@ class Gyro_Sensor:
         self.__smoothvalues = {}
         self.sensor = EV3Sensor(self.port.value)
         self.isreadingruning = {}
+        self.__lastValues = {}
         print("Gyro-Sensor wurde initialisiert")
 
     def start_gyro_angel_smooth(self):
@@ -134,11 +190,11 @@ class Gyro_Sensor:
             werte = []
             for x in range(messwerte):
                 try:
-                    wert = self.sensor.value()
+                    wert = self.__get_gyro_angel()
                     if wert is not None:
                         werte.append(wert)
                 except ValueError:
-                    print("Fehler Gyro Angel Smooth")
+                    break
                 sleep(pause)
             gesamt = 0
             for wert in werte:
@@ -151,23 +207,45 @@ class Gyro_Sensor:
             value = self.sensor.value()
             while value >= 360:
                 value -= 360
-            while value <= 360:
+            while value <= -360:
                 value += 360
+            return value
         except ValueError:
             return None
 
     def get_value(self, value_type):
         try:
             if value_type == ValueTypes.gyro_angle:
-                return self.__get_gyro_angel()
+                value = self.__get_gyro_angel()
+                if value is not None:
+                    self.__lastValues[value_type] = value
+                    return value
+                elif self.__lastValues.__contains__(value_type):
+                    return self.__lastValues[value_type]
+                else:
+                    return None
+
             ################################
             elif value_type == ValueTypes.gyro_angle_smooth:
                 if self.__smoothvalues.__contains__(value_type):
-                    return self.__smoothvalues[value_type]
+                    value = self.__smoothvalues[value_type]
+                    if value is not None:
+                        self.__lastValues[value_type] = value
+                        return value
+                    elif self.__lastValues.__contains__(value_type):
+                        return self.__lastValues[value_type]
+                    else:
+                        return None
                 else:
-                    return None
+                    if self.__lastValues.__contains__(value_type):
+                        return self.__lastValues[value_type]
+                    else:
+                        return None
         except ValueError:
-            return None
+            if self.__lastValues.__contains__(value_type):
+                return self.__lastValues[value_type]
+            else:
+                return None
 
 
 ############################################################
@@ -176,6 +254,7 @@ class Color_Sensor:
     def __init__(self, port):
         self.port = port
         self.__smoothvalues = {}
+        self.__lastValues = {}
         self.sensor = EV3Sensor(self.port.value)
         self.isreadingruning = {}
         print("Color-Sensor wurde initialisiert")
@@ -184,17 +263,41 @@ class Color_Sensor:
         try:
             if value_type == ValueTypes.color:
                 self.sensor.mode = Utility.SensorModes.color.value
-                return Utility.colors[self.sensor.value()]
+                value = Utility.colors[self.sensor.value()]
+                if value is not None:
+                    self.__lastValues[value_type] = value
+                    return value
+                elif self.__lastValues.__contains__(value_type):
+                    return self.__lastValues[value_type]
+                else:
+                    return None
             ################################
             elif value_type == ValueTypes.reflect:
                 self.sensor.mode = Utility.SensorModes.reflect.value
-                return self.sensor.value()
+                value = self.sensor.value()
+                if value is not None:
+                    self.__lastValues[value_type] = value
+                    return value
+                elif self.__lastValues.__contains__(value_type):
+                    return self.__lastValues[value_type]
+                else:
+                    return None
             ################################
             elif value_type == ValueTypes.ambiente:
                 self.sensor.mode = Utility.SensorModes.ambiente.value
-                return self.sensor.value()
+                value = self.sensor.value()
+                if value is not None:
+                    self.__lastValues[value_type] = value
+                    return value
+                elif self.__lastValues.__contains__(value_type):
+                    return self.__lastValues[value_type]
+                else:
+                    return None
         except ValueError:
-            return None
+            if self.__lastValues.__contains__(value_type):
+                return self.__lastValues[value_type]
+            else:
+                return None
 
 
 ############################################################
@@ -204,12 +307,22 @@ class Ultrasonic_Sensor:
         self.port = port
         self.__smoothvalues = {}
         self.sensor = EV3Sensor(self.port.value)
+        self.__lastValue = None
         self.isreadingruning = {}
+        self.sensor.mode = 'US-DIST-CM'
         print("Ultraschall-Sensor wurde initialisiert")
 
     def get_value(self, value_type):
         try:
             if value_type == ValueTypes.ultrasonic_distance:
-                return self.sensor.value()
+                value = self.sensor.value()
+                if value is not None:
+                    self.__lastValue = value
+                    return value
+                elif self.__lastValue is not None:
+                    return self.__lastValue
         except ValueError:
-            return None
+            if self.__lastValue is not None:
+                return self.__lastValue
+            else:
+                return None
