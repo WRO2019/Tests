@@ -14,24 +14,35 @@ class Ir_Seeker:
         self.sensor = EV3Sensor(self.port.value)
         self.isreadingruning = {}
         self.__lastValues = {}
-        self.sensor.mode = SensorModes.ir_gefilter.value
-        print("Ir-Seeker wurde initialisiert")
+        self.isconnected = True
+        if self.sensor.connected:
+            self.sensor.mode = SensorModes.ir_gefilter.value
+            print("Ir-Seeker wurde initialisiert")
+        else:
+            self.isconnected = False
+            print("Ir-Seeker ist nicht verbunden")
 
     def start_ir_direction_smooth(self):
-        for i in range(2):
-            self.isreadingruning[ValueTypes.ir_direction_smooth] = True
-            thread = threading.Thread(target=self.__reading_values, args=(5, 0.2, ValueTypes.ir_direction_smooth,))
-            thread.start()
-            sleep(0.5)
-        print("Ir-direction-smooth wurde gestartet")
+        if self.isconnected is False and self.sensor.connected:
+            self.sensor.mode = SensorModes.ir_gefilter.value
+            print("Ir-Seeker wurde initialisiert")
+
+        if self.sensor.connected:
+            for i in range(2):
+                self.isreadingruning[ValueTypes.ir_direction_smooth] = True
+                thread = threading.Thread(target=self.__reading_values, args=(5, 0.2, ValueTypes.ir_direction_smooth,))
+                thread.start()
+                sleep(0.5)
+            print("Ir-direction-smooth wurde gestartet")
 
     def start_ir_distance_smooth(self):
-        for i in range(2):
-            self.isreadingruning[ValueTypes.ir_distance_smooth] = True
-            thread = threading.Thread(target=self.__reading_values, args=(5, 0.2, ValueTypes.ir_distance_smooth,))
-            thread.start()
-            sleep(0.5)
-        print("Ir-distance-smooth wurde gestartet")
+        if self.sensor.connected:
+            for i in range(2):
+                self.isreadingruning[ValueTypes.ir_distance_smooth] = True
+                thread = threading.Thread(target=self.__reading_values, args=(5, 0.2, ValueTypes.ir_distance_smooth,))
+                thread.start()
+                sleep(0.5)
+            print("Ir-distance-smooth wurde gestartet")
 
     def __reading_values(self, messwerte, pause, value_type):
         if value_type == ValueTypes.ir_distance_smooth:
@@ -81,40 +92,10 @@ class Ir_Seeker:
             None
 
     def get_value(self, value_type):
-        try:
-            if value_type == ValueTypes.ir_direction:
-                value = self.sensor.value()
-                if value is not None:
-                    self.__lastValues[value_type] = value
-                    return value
-                elif self.__lastValues.__contains__(value_type):
-                    return self.__lastValues[value_type]
-                else:
-                    return None
-            ################################
-            elif value_type == ValueTypes.ir_distance:
-                value = self.__get_ir_distance()
-                if value is not None:
-                    self.__lastValues[value_type] = value
-                    return value
-                elif self.__lastValues.__contains__(value_type):
-                    return self.__lastValues[value_type]
-                else:
-                    return None
-            ################################
-            elif value_type == ValueTypes.ir_angle:
-                value = Utility.ir_seeker_angle_area / 9 * self.sensor.value()
-                if value is not None:
-                    self.__lastValues[value_type] = value
-                    return value
-                elif self.__lastValues.__contains__(value_type):
-                    return self.__lastValues[value_type]
-                else:
-                    return None
-            ################################
-            elif value_type == ValueTypes.ir_angle_smooth:
-                if self.__smoothvalues.__contains__(ValueTypes.ir_direction_smooth):
-                    value = Utility.ir_seeker_angle_area / 9 * self.__smoothvalues[ValueTypes.ir_direction_smooth]
+        if self.sensor.connected:
+            try:
+                if value_type == ValueTypes.ir_direction:
+                    value = self.sensor.value()
                     if value is not None:
                         self.__lastValues[value_type] = value
                         return value
@@ -122,15 +103,9 @@ class Ir_Seeker:
                         return self.__lastValues[value_type]
                     else:
                         return None
-                else:
-                    if self.__lastValues.__contains__(value_type):
-                        return self.__lastValues[value_type]
-                    else:
-                        return None
-            ################################
-            elif value_type == ValueTypes.ir_direction_smooth:
-                if self.__smoothvalues.__contains__(value_type):
-                    value = self.__smoothvalues[value_type]
+                ################################
+                elif value_type == ValueTypes.ir_distance:
+                    value = self.__get_ir_distance()
                     if value is not None:
                         self.__lastValues[value_type] = value
                         return value
@@ -138,15 +113,9 @@ class Ir_Seeker:
                         return self.__lastValues[value_type]
                     else:
                         return None
-                else:
-                    if self.__lastValues.__contains__(value_type):
-                        return self.__lastValues[value_type]
-                    else:
-                        return None
-            ################################
-            elif value_type == ValueTypes.ir_distance_smooth:
-                if self.__smoothvalues.__contains__(value_type):
-                    value = self.__smoothvalues[value_type]
+                ################################
+                elif value_type == ValueTypes.ir_angle:
+                    value = Utility.ir_seeker_angle_area / 9 * self.sensor.value()
                     if value is not None:
                         self.__lastValues[value_type] = value
                         return value
@@ -154,16 +123,61 @@ class Ir_Seeker:
                         return self.__lastValues[value_type]
                     else:
                         return None
-                else:
-                    if self.__lastValues.__contains__(value_type):
-                        return self.__lastValues[value_type]
+                ################################
+                elif value_type == ValueTypes.ir_angle_smooth:
+                    if self.__smoothvalues.__contains__(ValueTypes.ir_direction_smooth):
+                        value = Utility.ir_seeker_angle_area / 9 * self.__smoothvalues[ValueTypes.ir_direction_smooth]
+                        if value is not None:
+                            self.__lastValues[value_type] = value
+                            return value
+                        elif self.__lastValues.__contains__(value_type):
+                            return self.__lastValues[value_type]
+                        else:
+                            return None
                     else:
-                        return None
-        except ValueError:
-            if self.__lastValues.__contains__(value_type):
-                return self.__lastValues[value_type]
-            else:
-                return None
+                        if self.__lastValues.__contains__(value_type):
+                            return self.__lastValues[value_type]
+                        else:
+                            return None
+                ################################
+                elif value_type == ValueTypes.ir_direction_smooth:
+                    if self.__smoothvalues.__contains__(value_type):
+                        value = self.__smoothvalues[value_type]
+                        if value is not None:
+                            self.__lastValues[value_type] = value
+                            return value
+                        elif self.__lastValues.__contains__(value_type):
+                            return self.__lastValues[value_type]
+                        else:
+                            return None
+                    else:
+                        if self.__lastValues.__contains__(value_type):
+                            return self.__lastValues[value_type]
+                        else:
+                            return None
+                ################################
+                elif value_type == ValueTypes.ir_distance_smooth:
+                    if self.__smoothvalues.__contains__(value_type):
+                        value = self.__smoothvalues[value_type]
+                        if value is not None:
+                            self.__lastValues[value_type] = value
+                            return value
+                        elif self.__lastValues.__contains__(value_type):
+                            return self.__lastValues[value_type]
+                        else:
+                            return None
+                    else:
+                        if self.__lastValues.__contains__(value_type):
+                            return self.__lastValues[value_type]
+                        else:
+                            return None
+            except ValueError:
+                if self.__lastValues.__contains__(value_type):
+                    return self.__lastValues[value_type]
+                else:
+                    return None
+        else:
+            return None
 
 
 ############################################################
