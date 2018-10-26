@@ -1,4 +1,4 @@
-from Utility import *
+from GUI_Utility import *
 import time
 from random import *
 
@@ -13,8 +13,8 @@ code = ["File CUsers\Kevin\Documents\GitHub\Tests\MCTUtility.py, line 1",
         "_tkinter.TclError: invalid command name .!label6              "]
 
 while True:
-    ir_sensor_update(randint(0, 9), [randint(0, 999), randint(0, 999), randint(0, 999), randint(0, 999), randint(0, 999)], [uniform(0, 999), uniform(0, 999), uniform(0, 999), uniform(0, 999), uniform(0, 999)])
-    color_sensor_update(randint(0, 100), uniform(0, 100), color[randint(0, 7)])
+    ir_sensor_update(randint(0, 9), randint(0, 9), randint(-360, 360), randint(-360, 360), randint(0, 999), randint(0, 999))
+    color_sensor_update(randint(0, 100), color[randint(0, 6)])
     gyro_sensor_update(randint(-360, 360), uniform(-360, 360))
     motor_update(randint(0, 100), randint(0, 100), randint(0, 100), randint(0, 100))
     console_print(code[randint(0, 6)])

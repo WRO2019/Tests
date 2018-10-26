@@ -4,7 +4,6 @@ from Utility import *
 
 # Sensoren erstellen(Port)
 ir_seeker = Ir_Seeker(Ports.in1)
-print(ir_seeker)
 color_sensor = Color_Sensor(Ports.in2)
 gyro_sensor = Gyro_Sensor(Ports.in3)
 ultrasonic_sensor = Ultrasonic_Sensor(Ports.in4)

@@ -1,4 +1,4 @@
-from Utility import *
+from GUI_Utility import *
 import time
 from random import *
 from SSH_Data import decode_input
@@ -19,17 +19,16 @@ except TimeoutError:
 
 channel = ssh.invoke_shell()
 
-stdin, stdout, stderr = ssh.exec_command("python3 Main.py", get_pty=True)
+stdin, stdout, stderr = ssh.exec_command("python3 SSH.py", get_pty=True)
 stdin.close()
 
 
 def readingSSH():
     for line in iter(lambda: stdout.readline(2048), ""):
-        if line is not None:
-            motor_update(randint(0, 100), randint(0, 100), randint(0, 100), randint(0, 100))
-            decode_input(str(line))
-            window.update_idletasks()
-            window.update()
+        motor_update(randint(0, 100), randint(0, 100), randint(0, 100), randint(0, 100))
+        decode_input(str(line))
+        window.update_idletasks()
+        window.update()
 
 
 ssh_thread = threading.Thread(target=readingSSH(), args=())

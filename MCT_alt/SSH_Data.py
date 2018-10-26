@@ -1,5 +1,5 @@
 from SSH_Utility import *
-from Utility import *
+from GUI_Utility import *
 
 def decode_input(input):
     if input[0:6] == "datas:":
@@ -31,11 +31,11 @@ def decode_input(input):
 
             elif value.valueType == ValueTypes.reflect.value:
                 Values.reflect = value.value
-                color_sensor_update(value.value, "--", Values.color)
+                color_sensor_update(value.value, Values.color)
 
             elif value.valueType == ValueTypes.color.value:
                 Values.color = value.value
-                color_sensor_update(Values.reflect, "--", value.value)
+                color_sensor_update(Values.reflect, value.value)
                 ##
             elif value.valueType == ValueTypes.ir_distance_smooth.value:
                 Values.ir_distance_smooth = value.value
