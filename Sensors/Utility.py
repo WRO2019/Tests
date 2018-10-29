@@ -41,16 +41,6 @@ class Ports(Enum):
 
 ############################################################
 
-class SensorTypes(Enum):
-    gyro_sensor = "gyro_sensor"
-    ir_sensor = "ir_sensor"
-    us_sensor = "us_sensor"
-    button_sensor = "button_sensor"
-    colour_sensor = "colour_sensor"
-
-
-############################################################
-
 class SensorModes(Enum):
     ir_gefilter = 'AC-ALL'
     ir_ungefiltert = 'DC-ALL'
@@ -80,5 +70,8 @@ class ValueTypes(Enum):
     color = "color"
     reflect = "reflect"
     ambiente = "ambiente"
+    ################################
+    # ultrasonic distance
+    ultrasonic_distance = "ultrasonic_distance"
 
 ############################################################

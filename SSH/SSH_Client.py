@@ -16,10 +16,10 @@ except TimeoutError:
 
 channel = ssh.invoke_shell()
 
-stdin, stdout, stderr = ssh.exec_command("python3 IR_test.py",  get_pty=True)
+stdin, stdout, stderr = ssh.exec_command("python3 Main.py",  get_pty=True)
 stdin.close()
 
 for line in iter(lambda: stdout.readline(2048), ""):
-    i = int(line)
-    print(i)
+    #i = int(line)
+    print(line)
 

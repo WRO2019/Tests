@@ -4,13 +4,22 @@ from PIL import Image
 import getpass
 
 window = Tk()  # Fenster wir erstellt
-
-
 # Höhe und Breite des Fensters wird an den Monitor angepasst
 w = int(window.winfo_screenwidth() / 2)
 h = window.winfo_screenheight()
 
 userName = getpass.getuser()
+
+colors = {
+    0: "--",
+    1: "Black",
+    2: "Blue",
+    3: "Green",
+    4: "Yellow",
+    5: "Red",
+    6: "White",
+    7: "Brown"
+}
 
 # Konfiguriert Bild Adresse
 ir_ImgFile = [f'C:\\Users\{userName}\Documents\GitHub\Tests\MCT\images\IRsensor0.gif',
@@ -89,16 +98,10 @@ console_ImgLabel.place(x=console_ImgX, y=console_ImgY)
 
 
 # Text Labels werden erstellt und konfiguriert
-ir_1_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
-ir_2_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
-ir_3_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
-ir_4_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
-ir_5_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
-ir_5_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 100 * resolution))
-ir_4_Label.place(x=int(ir_ImgX + 230 * resolution), y=int(ir_ImgY + 135 * resolution))
-ir_3_Label.place(x=int(ir_ImgX + 190 * resolution), y=int(ir_ImgY + 240 * resolution))
-ir_2_Label.place(x=int(ir_ImgX + 220 * resolution), y=int(ir_ImgY + 350 * resolution))
-ir_1_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 380 * resolution))
+ir_distance_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
+ir_angle_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
+ir_distance_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 100 * resolution))
+ir_angle_Label.place(x=int(ir_ImgX + 230 * resolution), y=int(ir_ImgY + 135 * resolution))
 
 color_1_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 25))
 color_2_Label = Label(background="black", borderwidth=0, fg="green", text="000", font=("Consolas", 23))
@@ -122,13 +125,13 @@ console_1_Label.config(text="", font=("Consolas", 12), anchor=W, justify=LEFT)
 console_1_Label.place(x=int(console_ImgX + 10 * resolution), y=int(console_ImgY + 8 * resolution))
 
 
-def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
+def ir_sensor_update(direction_raw, direction_smooth, angle_raw, angle_smooth, distance_raw, distance_smooth, ):
 
     # definiert alle Varialen als global
     global ir_ImgLabel
     global ir_tkimage
-    global ir_1_Label
-    global ir_2_Label
+    global ir_distance_Label
+    global ir_angle_Label
     global ir_3_Label
     global ir_4_Label
     global ir_5_Label
@@ -137,47 +140,41 @@ def ir_sensor_update(direction, signal_strenght_raw, signal_strenght_smooth):
     # updatet Text
 
     if raw:
-        ir_1_Label.config(text='{:03d}'.format(signal_strenght_raw[0]))
-        ir_2_Label.config(text='{:03d}'.format(signal_strenght_raw[1]))
-        ir_3_Label.config(text='{:03d}'.format(signal_strenght_raw[2]))
-        ir_4_Label.config(text='{:03d}'.format(signal_strenght_raw[3]))
-        ir_5_Label.config(text='{:03d}'.format(signal_strenght_raw[4]))
+        ir_distance_Label.config(text="D:" + '{:03d}'.format(distance_raw))
+        ir_angle_Label.config(text="A:" + '{:03d}'.format(angle_raw) + "°")
 
-        ir_5_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 100 * resolution))
-        ir_4_Label.place(x=int(ir_ImgX + 230 * resolution), y=int(ir_ImgY + 135 * resolution))
-        ir_3_Label.place(x=int(ir_ImgX + 190 * resolution), y=int(ir_ImgY + 240 * resolution))
-        ir_2_Label.place(x=int(ir_ImgX + 220 * resolution), y=int(ir_ImgY + 350 * resolution))
-        ir_1_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 380 * resolution))
+        ir_angle_Label.place(x=int(ir_ImgX + 220 * resolution), y=int(ir_ImgY + 350 * resolution))
+        ir_distance_Label.place(x=int(ir_ImgX + 343 * resolution), y=int(ir_ImgY + 380 * resolution))
+
+        if 0 <= direction_raw <= 9:
+            ir_img = Image.open(ir_ImgFile[direction_raw])
+            ir_tkimage = ImageTk.PhotoImage(
+            ir_img.resize((ir_ImgWidth, ir_ImgHeight)))  # verkleinert das Bild (PIL Library benötigt)
+            ir_ImgLabel.config(image=ir_tkimage, borderwidth=0)
 
     else:
-        ir_1_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[0]))
-        ir_2_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[1]))
-        ir_3_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[2]))
-        ir_4_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[3]))
-        ir_5_Label.config(text='{0:.2f}'.format(signal_strenght_smooth[4]))
+        ir_distance_Label.config(text="D:" + '{0:.2f}'.format(distance_smooth))
+        ir_angle_Label.config(text="A:" + '{0:.2f}'.format(angle_smooth) + "°")
 
-        ir_5_Label.place(x=int(ir_ImgX + 313 * resolution), y=int(ir_ImgY + 80 * resolution))
-        ir_4_Label.place(x=int(ir_ImgX + 195 * resolution), y=int(ir_ImgY + 135 * resolution))
-        ir_3_Label.place(x=int(ir_ImgX + 160 * resolution), y=int(ir_ImgY + 240 * resolution))
-        ir_2_Label.place(x=int(ir_ImgX + 195 * resolution), y=int(ir_ImgY + 350 * resolution))
-        ir_1_Label.place(x=int(ir_ImgX + 313 * resolution), y=int(ir_ImgY + 400 * resolution))
+        ir_angle_Label.place(x=int(ir_ImgX + 195 * resolution), y=int(ir_ImgY + 350 * resolution))
+        ir_distance_Label.place(x=int(ir_ImgX + 313 * resolution), y=int(ir_ImgY + 400 * resolution))
+
+        if 0 <= direction_smooth <= 9:
+            ir_img = Image.open(ir_ImgFile[direction_smooth])
+            ir_tkimage = ImageTk.PhotoImage(
+            ir_img.resize((ir_ImgWidth, ir_ImgHeight)))  # verkleinert das Bild (PIL Library benötigt)
+            ir_ImgLabel.config(image=ir_tkimage, borderwidth=0)
 
     # updatet Bild
-    ir_img = Image.open(ir_ImgFile[direction])
-    ir_tkimage = ImageTk.PhotoImage(ir_img.resize((ir_ImgWidth, ir_ImgHeight)))  # verkleinert das Bild (PIL Library benötigt)
-    ir_ImgLabel.config(image=ir_tkimage, borderwidth=0)
 
 
-def color_sensor_update(brightness_raw, brightness_smooth, color):
+
+def color_sensor_update(brightness_raw, color):
     global color_ImgFile
     global color_tkimage
 
-    if raw:
-        color_1_Label.config(text='{}{:03d}'.format("B:", brightness_raw))
-        color_1_Label.place(x=int(color_ImgX + 273 * resolution), y=int(color_ImgY + 50 * resolution))
-    else:
-        color_1_Label.config(text="B:" + '{0:.2f}'.format(brightness_smooth))
-        color_1_Label.place(x=int(color_ImgX + 240 * resolution), y=int(color_ImgY + 50 * resolution))
+    color_1_Label.config(text='{}{:03d}'.format("B:", brightness_raw))
+    color_1_Label.place(x=int(color_ImgX + 273 * resolution), y=int(color_ImgY + 50 * resolution))
 
     color_2_Label.config(text='{:^8s}'.format("C:" + color))
 
@@ -191,7 +188,8 @@ def gyro_sensor_update(value_raw, value_smooth):
     global gyro_tkimage
 
     if raw:
-        gyro_1_Label.config(text='{:>4}'.format('{:03d}'.format(value_raw)))
+        #gyro_1_Label.config(text='{:>4}'.format('{:03d}'.format(value_raw)))
+        gyro_1_Label.config(text='{:>6}'.format('{0:.2f}'.format(value_raw)))
         gyro_1_Label.place(x=int(gyro_ImgX + 204 * resolution), y=int(gyro_ImgY + 80 * resolution))
     else:
         gyro_1_Label.config(text='{:>6}'.format('{0:.2f}'.format(value_smooth)))
@@ -224,26 +222,33 @@ def console_print(string):
     global line5
     global line6
 
-    if line6 == "":
-        if line1 == "":
-            line1 = string
-        elif line2 == "":
-            line2 = string
-        elif line3 == "":
-            line3 = string
-        elif line4 == "":
-            line4 = string
-        elif line5 == "":
-            line5 = string
-        else:
-            line6 = string
-    else:
-        line1 = line2
-        line2 = line3
-        line3 = line4
-        line4 = line5
-        line5 = line6
-        line6 = string
+    #if line6 == "":
+    #    if line1 == "":
+    #        line1 = string
+    #    elif line2 == "":
+    #        line2 = string
+    #    elif line3 == "":
+    #        line3 = string
+    #    elif line4 == "":
+    #        line4 = string
+    #    elif line5 == "":
+    #        line5 = string
+    #    else:
+    #        line6 = string
+    #else:
+    #    line1 = line2
+    #    line2 = line3
+    #    line3 = line4
+    #    line4 = line5
+    #    line5 = line6
+    #    line6 = string
+
+    line6 = line5
+    line5 = line4
+    line4 = line3
+    line3 = line2
+    line2 = line1
+    line1 = string
 
     console_1_Label.config(text="{0}\n{1}\n{2}\n{3}\n{4}\n{5}".format(line1, line2, line3, line4, line5, line6))
 
@@ -264,12 +269,16 @@ def state_raw():
     global raw
 
     raw = True
+    window.update_idletasks()
+    window.update()
 
 
 def state_smooth():
     global raw
 
     raw = False
+    window.update_idletasks()
+    window.update()
 
 
 # Fenster wird konfiguriert
