@@ -11,11 +11,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="19" column="56" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="56" />
+            <state relative-caret-position="272">
+              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -23,25 +23,19 @@
       <file leaf-file-name="Utility.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Utility.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="26" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+            <state relative-caret-position="287">
+              <caret line="65" column="47" lean-forward="true" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sensors.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Sensors.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sensors.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="309" column="35" selection-start-line="309" selection-start-column="35" selection-end-line="309" selection-end-column="35" />
+            <state relative-caret-position="558">
+              <caret line="326" selection-start-line="326" selection-end-line="326" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-                <element signature="e#733#1279#0" />
-                <element signature="e#1329#1693#0" />
-                <element signature="e#1765#3029#0" />
-                <element signature="e#3072#3444#0" />
-                <element signature="e#3491#7826#0" />
-                <element signature="e#7914#11211#0" />
               </folding>
             </state>
           </provider>
@@ -70,13 +64,13 @@
         <option value="$PROJECT_DIR$/Utility2.py" />
         <option value="$PROJECT_DIR$/Sensor.py" />
         <option value="$PROJECT_DIR$/Main2.py" />
-        <option value="$PROJECT_DIR$/Utility.py" />
         <option value="$PROJECT_DIR$/Sensors.py" />
         <option value="$PROJECT_DIR$/Main.py" />
+        <option value="$PROJECT_DIR$/Utility.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="627" />
     <option name="y" value="68" />
     <option name="width" value="683" />
@@ -103,7 +97,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Roboscope/Documents/GitHub/Tests/Sensors/Main.py&#10;Starten&#9;null&#9;null" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MCT" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -138,9 +132,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="627" y="68" width="683" height="738" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.6418605" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3133236" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3359375" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
@@ -161,21 +156,21 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.121522695" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -193,12 +188,6 @@
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#733#1279#0" />
-            <element signature="e#1329#1693#0" />
-            <element signature="e#1765#3029#0" />
-            <element signature="e#3072#3444#0" />
-            <element signature="e#3491#7826#0" />
-            <element signature="e#7914#11211#0" />
           </folding>
         </state>
       </provider>
@@ -216,12 +205,6 @@
           <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#733#1279#0" />
-            <element signature="e#1329#1693#0" />
-            <element signature="e#1765#3029#0" />
-            <element signature="e#3072#3444#0" />
-            <element signature="e#3491#7826#0" />
-            <element signature="e#7914#11211#0" />
           </folding>
         </state>
       </provider>
@@ -246,12 +229,6 @@
           <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#733#1279#0" />
-            <element signature="e#1329#1693#0" />
-            <element signature="e#1765#3029#0" />
-            <element signature="e#3072#3444#0" />
-            <element signature="e#3491#7826#0" />
-            <element signature="e#7914#11211#0" />
           </folding>
         </state>
       </provider>
@@ -283,12 +260,6 @@
           <caret line="71" column="40" lean-forward="true" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="40" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#733#1279#0" />
-            <element signature="e#1329#1693#0" />
-            <element signature="e#1765#3029#0" />
-            <element signature="e#3072#3444#0" />
-            <element signature="e#3491#7826#0" />
-            <element signature="e#7914#11211#0" />
           </folding>
         </state>
       </provider>
@@ -411,12 +382,6 @@
           <caret line="6" lean-forward="true" selection-end-line="124" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#733#1279#0" />
-            <element signature="e#1329#1693#0" />
-            <element signature="e#1765#3029#0" />
-            <element signature="e#3072#3444#0" />
-            <element signature="e#3491#7826#0" />
-            <element signature="e#7914#11211#0" />
           </folding>
         </state>
       </provider>
@@ -436,33 +401,27 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-293578176/builtins.py" />
-    <entry file="file://$PROJECT_DIR$/Sensors.py">
+    <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="309" column="35" selection-start-line="309" selection-start-column="35" selection-end-line="309" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#733#1279#0" />
-            <element signature="e#1329#1693#0" />
-            <element signature="e#1765#3029#0" />
-            <element signature="e#3072#3444#0" />
-            <element signature="e#3491#7826#0" />
-            <element signature="e#7914#11211#0" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Utility.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="26" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+        <state relative-caret-position="287">
+          <caret line="65" column="47" lean-forward="true" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Main.py">
+    <entry file="file://$PROJECT_DIR$/Sensors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="56" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="56" />
+        <state relative-caret-position="558">
+          <caret line="326" selection-start-line="326" selection-end-line="326" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

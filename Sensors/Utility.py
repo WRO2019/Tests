@@ -71,7 +71,7 @@ class ValueTypes(Enum):
     reflect = "reflect"
     ambiente = "ambiente"
     ################################
-    # Ultraschall sensor
+    # ultrasonic distance
     ultrasonic_distance = "ultrasonic_distance"
 
 ############################################################
