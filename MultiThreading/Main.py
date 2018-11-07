@@ -6,12 +6,11 @@ import Utility
 #############################################################################################
 Utility.run = True
 # Alt
-_thread.start_new_thread(Utility.print_time, ("Thread-1", 1,))  # Threads starten
-#_thread.start_new_thread(Utility.print_time, ("Thread-2", 3,))
+_thread.start_new_thread(Utility.print_time, ("Thread-1", 1,))
 
 ########################################
 # Neu
-thread = threading.Thread(target=Utility.print_time, args=("Thread-2", 3,))
+thread = threading.Thread(target=Utility.print_time, args=("Thread-2", 3,))     # Achtung!!!!   Ohne () !!!!!!!!!!
 Utility.threads.append(thread)
 thread.start()
 ########################################
