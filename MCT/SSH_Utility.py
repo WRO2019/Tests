@@ -16,6 +16,8 @@ class Values():
     color = None
     reflect = None
     ambiente = None
+    ################################
+    ultrasonic_distance = "ultrasonic_distance"
 
 
 class ValueTypes(Enum):
@@ -37,6 +39,9 @@ class ValueTypes(Enum):
     color = "color"
     reflect = "reflect"
     ambiente = "ambiente"
+    ################################
+    # ultrasonic distance
+    ultrasonic_distance = "ultrasonic_distance"
 
 
 class Value():

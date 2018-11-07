@@ -13,8 +13,8 @@ def decode_input(window, input):
                 if key != ";":
                     value += key
                 else:
-                    value = int(float(value))
-                    values.append(Value(value, value_type, ))
+                    # value = int(float(value))
+                    values.append(Value(value, value_type))
                     value_active = False
                     value = ""
                     value_type = ""
@@ -73,5 +73,8 @@ def decode_input(window, input):
             elif value.valueType == ValueTypes.gyro_angle.value:
                 Values.gyro_angle = value.value
                 window.gyro_sensor_update(value.value, Values.gyro_angle_smooth)
+            elif value.valueType == ValueTypes.ultrasonic_distance.value:
+                Values.ultrasonic_distance = value.value
+                window.ultrasonic_sensor_update(value.value)
     else:
         window.console_print(input)
